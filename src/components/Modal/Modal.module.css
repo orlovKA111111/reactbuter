@@ -1,0 +1,20 @@
+.Modal{
+    position: absolute;
+    display: block;
+    z-index: 10;
+    background: #131316;
+    border-radius: 40px;
+    opacity: 1;
+    padding: 40px 40px 60px 40px;
+    justify-content: center;
+    top: 25%;
+    left: 40%;
+    overflow: auto;
+}
+.OrderClose{
+    position: relative;
+    width: 25%;
+    float: right;
+    display: flex;
+    justify-content: flex-end;
+}

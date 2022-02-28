@@ -1,0 +1,30 @@
+.constructor-element{
+width: 100%;
+}
+
+.itemConstructor{
+ margin-top: 16px;
+ align-content: center;
+ align-items: center;
+ display: flex;
+ justify-content: flex-end;
+}
+.itemConstructorBody{
+ height: 650px;
+ overflow-y: scroll;
+ overflow-x: hidden;
+ scrollbar-width: thin;
+}
+
+.buttonOrderCreate{
+ margin-right: 40px;
+ display: flex;
+ padding: 10px;
+}
+.orderButtonPrice{
+ margin-top: 40px;
+ display: flex;
+ justify-content: flex-end;
+ align-content: center;
+ align-items: center;
+}

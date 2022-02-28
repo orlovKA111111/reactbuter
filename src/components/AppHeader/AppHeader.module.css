@@ -1,0 +1,17 @@
+header {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    width: 95%;
+}
+.menuBotun{
+    display: flex;
+    align-items: center;
+}
+.constructor{
+    padding: 20px;
+    margin: 8px 16px 8px 16px;
+}
+.listOrder{
+
+}

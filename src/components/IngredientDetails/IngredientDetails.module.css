@@ -1,0 +1,19 @@
+.popupItem{
+    position: relative;
+    display: flex;
+    gap: 20px;
+
+}
+.popupImgItem{
+    width: 90%;
+}
+.popupHeader{
+    display: flex;
+    width: 70%;
+    margin: 0;
+}
+.popupNameItem{
+    display: flex;
+    margin: 16px 0 32px 0;
+    justify-content: center;
+}

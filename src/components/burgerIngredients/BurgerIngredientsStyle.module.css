@@ -1,0 +1,44 @@
+h3{
+    width: 100%;
+    text-align-last: left;
+    margin-top: 40px;
+    margin-bottom: 24px;
+}
+.box{
+}
+.cadItems{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.item{
+    display: flex;
+    width: 48%;
+    flex-direction: column;
+    margin-top: 24px;
+}
+.imgItem{
+    margin: 0px 16px 0px 16px;
+}
+.priceItemsImg{
+    display: flex;
+    justify-content: center;
+    font-size: 33px;
+    margin: 4px 0 4px 0;
+}
+.orderButtonPrice{
+    margin-top: 40px;
+}
+
+.tab{
+ display: flex;
+}
+.itemIngredientBody{
+    height: 700px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
