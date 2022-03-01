@@ -1,18 +1,13 @@
 import React from 'react';
 import style from './App.module.css';
 import Header from "../AppHeader/AppHeader";
-import BurgerIngredients from "../burgerIngredients/BurgerIngredients"
+import BurgerIngredients from "../BurgerIngredients/BurgerIngredients"
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor"
 import {
     ModalWithUseEffect,
     ModalContenxt,
     modalControl
 } from "../ModalWithUseEffect/ModalWithUseEffect";
-
-
-
-
-import Modal from "../Modal/Modal";
 
 export default function App () {
         const [state, setState] = React.useState({

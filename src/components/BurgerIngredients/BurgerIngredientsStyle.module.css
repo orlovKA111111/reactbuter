@@ -35,7 +35,8 @@ h3{
 }
 
 .tab{
- display: flex;
+    display: flex;
+    width: 350px;
 }
 .itemIngredientBody{
     height: 700px;

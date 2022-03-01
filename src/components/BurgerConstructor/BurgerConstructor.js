@@ -23,20 +23,24 @@ export default function BurgerConstructor(props) {
                             <div key={index+n}>
                             <div className={style.itemConstructor} key={i._id+index+n}>
                                 {i.type === 'bun'?'':<DragIcon type="primary" />}
-                                <ConstructorElement
-                                    type = {i.type === 'bun'?'top':''}
-                                    isLocked = {i.type === 'bun'?'true':''}
-                                    text = {i.name+`${i.type === 'bun'?' (верх)':''}`}
-                                    price = {i.price}
-                                    thumbnail = {i.image_large}
-                                    name = {i.type}
-                                />
+                                <div className={style.itemConstructorTop}>
+                                    <ConstructorElement
+                                        type = {i.type === 'bun'?'top':''}
+                                        isLocked = {i.type === 'bun'?'true':''}
+                                        text = {i.name+`${i.type === 'bun'?' (верх)':''}`}
+                                        price = {i.price}
+                                        thumbnail = {i.image_large}
+                                        name = {i.type}
+                                    />
+                                </div>
                             </div>
                                 <div className={style.itemConstructorBody}>
                                 {props.children}
                                 </div>
                                 <div className={style.itemConstructor}  key={i._id+index}>
                                     {i.type === 'bun'?'':<DragIcon type="primary" />}
+                                    <div className={style.itemConstructorBottom}>
+
                                     <ConstructorElement
                                         type = {i.type === 'bun'?'bottom':''}
                                         isLocked = {i.type === 'bun'?'true':''}
@@ -45,6 +49,7 @@ export default function BurgerConstructor(props) {
                                         thumbnail = {i.image_large}
                                         name = {i.type}
                                     />
+                                    </div>
                                 </div>
                             </div>
                     ))

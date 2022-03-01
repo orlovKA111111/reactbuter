@@ -22,7 +22,6 @@ export default function Modal(props) {
         }
     }, [close])
 
-
     return (
             <div>
                 <ModalOverlay />
@@ -30,10 +29,9 @@ export default function Modal(props) {
                     <div  className={style.OrderClose}>
                         <CloseIcon onClick={close} type="primary" />
                     </div>
-                    {props.selectedSum?<OrderDetails />:null}
-                    {props.selectedItem?<IngredientDetails />:null}
+                    {props.selectedSum?<OrderDetails Details={props} />:null}
+                    {props.selectedItem?<IngredientDetails Details={props} />:null}
                 </div>
             </div>
-
     );
 }
