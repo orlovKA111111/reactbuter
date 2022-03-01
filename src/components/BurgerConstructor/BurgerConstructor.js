@@ -17,9 +17,9 @@ export default function BurgerConstructor(props) {
     function Buns (props) {
         const n =+ 1;
         return (
-            <div  className={style.itemConstructorBody}>
+            <div>
                 {!arrItems ?'':(
-                    arrItems.map((i, index) =>(i.type !== 'bun'?'':
+                    arrItems.map((i, index) =>(i.type !== 'bun' |  i._id !== '60d3b41abdacab0026a733c6'?'':
                             <div key={index+n}>
                             <div className={style.itemConstructor} key={i._id+index+n}>
                                 {i.type === 'bun'?'':<DragIcon type="primary" />}
@@ -32,7 +32,9 @@ export default function BurgerConstructor(props) {
                                     name = {i.type}
                                 />
                             </div>
+                                <div className={style.itemConstructorBody}>
                                 {props.children}
+                                </div>
                                 <div className={style.itemConstructor}  key={i._id+index}>
                                     {i.type === 'bun'?'':<DragIcon type="primary" />}
                                     <ConstructorElement
