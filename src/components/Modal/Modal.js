@@ -4,10 +4,11 @@ import OrderDetails from "../OrderDetails/OrderDetails";
 import ModalOverlay from "../ModalOverlay/ModalOverlay"
 import IngredientDetails from "../IngredientDetails/IngredientDetails"
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useModal} from "../ModalWithUseEffect/ModalWithUseEffect";
+import {ModalContenxt} from "../ModalWithUseEffect/ModalWithUseEffect";
 
 export default function Modal(props) {
-    const {close} = useModal()
+    const {control} = React.useContext(ModalContenxt)
+
     React.useEffect(() => {
         const closeFn = (event) => {
             if(event.key === 'Escape') {
@@ -27,7 +28,7 @@ export default function Modal(props) {
                 <ModalOverlay />
                 <div title='Бургер' className={style.Modal} >
                     <div  className={style.OrderClose}>
-                        <CloseIcon onClick={close} type="primary" />
+                        <CloseIcon onClick={control.close} type="primary" />
                     </div>
                     {props.selectedSum?<OrderDetails Details={props} />:null}
                     {props.selectedItem?<IngredientDetails Details={props} />:null}
