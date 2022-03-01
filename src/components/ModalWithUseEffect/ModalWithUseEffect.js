@@ -17,7 +17,7 @@ export function useModal() {
             modalCtx.control.open(content);
             setIsOpened(true);
         },
-        [modalCtx.control]
+    [modalCtx.control]
     );
 
     const close = useCallback(() => {
@@ -27,7 +27,6 @@ export function useModal() {
 
     useEffect(() => {
         modalCtx.control.setIsOpened = setIsOpened;
-        return
     }, []);
 
     return { isOpened, open, close };
@@ -73,7 +72,7 @@ export function ModalWithUseEffect() {
     useEffect(() => {
         modalCtx.control.open = onOpen;
         modalCtx.control.close = onClose;
-    }, [modalCtx.control, onOpen, onClose]);
+        }, [modalCtx.control, onOpen, onClose]);
 
     if (content) {
         return ReactDOM.createPortal(
