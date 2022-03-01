@@ -21,7 +21,7 @@ export default function Modal(props) {
             document.removeEventListener('keydown', closeFn)
         }
     }, [close])
-    console.log(props)
+
 
     return (
             <div>
@@ -30,8 +30,8 @@ export default function Modal(props) {
                     <div  className={style.OrderClose}>
                         <CloseIcon onClick={close} type="primary" />
                     </div>
-                    {props.ch}
-                    {props.selectedItem.image}
+                    {props.selectedSum?<OrderDetails />:null}
+                    {props.selectedItem?<IngredientDetails />:null}
                 </div>
             </div>
 
