@@ -14,7 +14,7 @@ export default function BurgerConstructor(props) {
         return open(<Modal selectedSum={itemsKey}/>)
     }), [open]);
 
-    function Bulki (props) {
+    function Buns (props) {
         const n =+ 1;
         return (
             <div  className={style.itemConstructorBody}>
@@ -53,7 +53,7 @@ export default function BurgerConstructor(props) {
 
     function Bar (){
         return (
-            <Bulki>
+            <Buns>
             {!arrItems ?'':(
                 arrItems.map((i, index) =>(i.type === 'bun'?'':
                         <div className={style.itemConstructor} key={i._id+index}>
@@ -69,7 +69,7 @@ export default function BurgerConstructor(props) {
                         </div>
                 ))
             )}
-            </Bulki>
+            </Buns>
         )
     }
 
