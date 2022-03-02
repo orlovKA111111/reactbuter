@@ -4,7 +4,6 @@ import Modal from "../Modal/Modal";
 
 export default function IngredientDetails(props){
     return (
-        <Modal>
             <div>
                 <h2 className={style.popupHeader}>Детали иградиента</h2>
                 <img className={style.popupImgItem} src={props.selectedItem.image} />
@@ -33,6 +32,5 @@ export default function IngredientDetails(props){
                         </span>
                 </div>
             </div>
-        </Modal>
     )
 }

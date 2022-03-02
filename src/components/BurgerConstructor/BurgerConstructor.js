@@ -3,6 +3,7 @@ import {Button, ConstructorElement, CurrencyIcon, DragIcon} from "@ya.praktikum/
 import Modal from "../Modal/Modal";
 import { useModal } from "../ModalWithUseEffect/ModalWithUseEffect";
 import style from "./BurgerConstructor.module.css"
+import OrderDetails from "../OrderDetails/OrderDetails";
 
 export default function BurgerConstructor(props) {
     const {open} = useModal();
@@ -11,7 +12,8 @@ export default function BurgerConstructor(props) {
 
     const onOpenPopup = React.useCallback(((event) => {
         const itemsKey = event.currentTarget.getAttribute('name');
-        return open(<Modal selectedSum={itemsKey}/>)
+        return open(<Modal><OrderDetails selectedSum={itemsKey} /></Modal>)
+        console.log('BurgerConstructor')
     }), [open]);
 
     function Buns (props) {

@@ -23,6 +23,7 @@ export default function Modal(props) {
         }
     }, [close])
 
+
     return (
             <div>
                 <ModalOverlay />

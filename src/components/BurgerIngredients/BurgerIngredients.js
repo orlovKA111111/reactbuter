@@ -3,6 +3,7 @@ import {CurrencyIcon , Tab} from "@ya.praktikum/react-developer-burger-ui-compon
 import style from'./BurgerIngredientsStyle.module.css'
 import Modal from './../Modal/Modal'
 import {useModal} from "../ModalWithUseEffect/ModalWithUseEffect";
+import IngredientDetails from "../IngredientDetails/IngredientDetails";
 
 
 
@@ -13,7 +14,7 @@ export default function BurgerIngredients (props) {
     const onOpenPopup = React.useCallback(((event) => {
         const itemsKey = event.currentTarget.getAttribute('name');
         const nextSelectedProduct = arrItems.find(product => product._id === itemsKey);
-        return open(<Modal selectedItem={nextSelectedProduct}/>)
+        return open(<Modal><IngredientDetails selectedItem={nextSelectedProduct} /></Modal> )
     }), [open, arrItems])
 
 
