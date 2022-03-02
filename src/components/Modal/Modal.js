@@ -30,8 +30,7 @@ export default function Modal(props) {
                     <div  className={style.OrderClose}>
                         <CloseIcon onClick={control.close} type="primary" />
                     </div>
-                    {props.selectedSum?<OrderDetails Details={props} />:null}
-                    {props.selectedItem?<IngredientDetails Details={props} />:null}
+                    {props.children}
                 </div>
             </div>
     );

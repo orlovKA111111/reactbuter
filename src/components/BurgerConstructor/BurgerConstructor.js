@@ -61,21 +61,21 @@ export default function BurgerConstructor(props) {
     function Bar (){
         return (
             <Buns>
-            {!arrItems ?'':(
-                arrItems.map((i, index) =>(i.type === 'bun'?'':
-                        <div className={style.itemConstructor} key={i._id+index}>
-                            {i.type === 'bun'?'':<DragIcon type="primary" />}
-                            <ConstructorElement
-                                type = {i.type === 'bun'?'top':''}
-                                isLocked = {i.type === 'bun'?'true':''}
-                                text = {i.name+`${i.type === 'bun'?' (верх)':''}`}
-                                price = {i.price}
-                                thumbnail = {i.image_large}
-                                name = {i.type}
-                            />
-                        </div>
-                ))
-            )}
+                {!arrItems ?'':(
+                    arrItems.map((i, index) =>(i.type === 'bun'?'':
+                            <div className={style.itemConstructor} key={i._id+index}>
+                                {i.type === 'bun'?'':<DragIcon type="primary" />}
+                                <ConstructorElement
+                                    type = {i.type === 'bun'?'top':''}
+                                    isLocked = {i.type === 'bun'?'true':''}
+                                    text = {i.name+`${i.type === 'bun'?' (верх)':''}`}
+                                    price = {i.price}
+                                    thumbnail = {i.image_large}
+                                    name = {i.type}
+                                />
+                            </div>
+                    ))
+                )}
             </Buns>
         )
     }

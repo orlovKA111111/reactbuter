@@ -1,35 +1,38 @@
 import React from 'react'
 import style from './IngredientDetails.module.css'
+import Modal from "../Modal/Modal";
 
 export default function IngredientDetails(props){
     return (
+        <Modal>
             <div>
                 <h2 className={style.popupHeader}>Детали иградиента</h2>
-                <img className={style.popupImgItem} src={props.Details.selectedItem.image} />
-                <span className={style.popupNameItem}>{props.Details.selectedItem.name}</span>
+                <img className={style.popupImgItem} src={props.selectedItem.image} />
+                <span className={style.popupNameItem}>{props.selectedItem.name}</span>
 
                 <div className={style.popupItem} >
                         <span>
                                 Калории, ккал
                             <br/>
-                            {props.Details.selectedItem.calories}
+                            {props.selectedItem.calories}
                         </span>
                     <span>
                                 Белки, г
                             <br/>
-                        {props.Details.selectedItem.proteins}
+                        {props.selectedItem.proteins}
                         </span>
                     <span>
                                 Жиры, г
                             <br/>
-                        {props.Details.selectedItem.fat}
+                        {props.selectedItem.fat}
                         </span>
                     <span>
                                 Углеводы г.
                             <br/>
-                        {props.Details.selectedItem.carbohydrates}
+                        {props.selectedItem.carbohydrates}
                         </span>
                 </div>
             </div>
+        </Modal>
     )
 }
