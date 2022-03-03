@@ -1,7 +1,6 @@
 import React from 'react'
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import style from './OrderDetails.module.css'
-import Modal from "../Modal/Modal";
 
 export default function OrderDetails(){
      return (

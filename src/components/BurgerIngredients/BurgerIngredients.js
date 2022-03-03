@@ -4,10 +4,14 @@ import style from'./BurgerIngredientsStyle.module.css'
 import Modal from './../Modal/Modal'
 import {useModal} from "../ModalWithUseEffect/ModalWithUseEffect";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
+import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
+import PropTypes from 'prop-types'
 
+BurgerIngredients.propTypes ={
+    items: PropTypes.object.isRequired
+}
 
-
-export default function BurgerIngredients (props) {
+export default function BurgerIngredients(props) {
     const arrItems = props.items.data
     const {open} = useModal()
 

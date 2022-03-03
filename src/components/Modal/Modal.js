@@ -1,18 +1,20 @@
 import React from 'react'
 import style from './Modal.module.css'
-import OrderDetails from "../OrderDetails/OrderDetails";
 import ModalOverlay from "../ModalOverlay/ModalOverlay"
-import IngredientDetails from "../IngredientDetails/IngredientDetails"
 import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {ModalContenxt} from "../ModalWithUseEffect/ModalWithUseEffect";
+import PropTypes from 'prop-types'
+
+Modal.propTypes ={
+    children: PropTypes.object.isRequired
+}
 
 export default function Modal(props) {
     const {control} = React.useContext(ModalContenxt)
-
     React.useEffect(() => {
         const closeFn = (event) => {
             if(event.key === 'Escape') {
-                close()
+                control.close()
             }
         }
 
@@ -21,8 +23,7 @@ export default function Modal(props) {
         return () => {
             document.removeEventListener('keydown', closeFn)
         }
-    }, [close])
-
+    }, [control.close])
 
     return (
             <div>

@@ -1,6 +1,10 @@
 import React from 'react'
 import style from './IngredientDetails.module.css'
-import Modal from "../Modal/Modal";
+import PropTypes from 'prop-types'
+
+IngredientDetails.propTypes ={
+    selectedItem: PropTypes.object.isRequired
+}
 
 export default function IngredientDetails(props){
     return (
