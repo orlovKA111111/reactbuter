@@ -8,14 +8,14 @@ IngredientDetails.propTypes ={
 
 export default function IngredientDetails(props){
     return (
-            <div>
+            <div className={style.popup}>
                 <h2 className={style.popupHeader}>Детали иградиента</h2>
                 <img className={style.popupImgItem} src={props.selectedItem.image} />
                 <span className={style.popupNameItem}>{props.selectedItem.name}</span>
 
                 <div className={style.popupItem} >
                         <span>
-                                Калории, ккал
+                                Калории,ккал
                             <br/>
                             {props.selectedItem.calories}
                         </span>
@@ -30,7 +30,7 @@ export default function IngredientDetails(props){
                         {props.selectedItem.fat}
                         </span>
                     <span>
-                                Углеводы г.
+                                Углеводы г
                             <br/>
                         {props.selectedItem.carbohydrates}
                         </span>

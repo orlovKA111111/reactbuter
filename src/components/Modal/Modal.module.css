@@ -12,9 +12,8 @@
     overflow: auto;
 }
 .OrderClose{
-    position: relative;
-    width: 25%;
-    float: right;
+    position: absolute;
+    width: 80%;
     display: flex;
     justify-content: flex-end;
 }

@@ -26,7 +26,7 @@ export default function Modal(props) {
     }, [control.close])
 
     return (
-            <div>
+            <div className='text text_type_main-default'>
                 <ModalOverlay />
                 <div title='Бургер' className={style.Modal} >
                     <div  className={style.OrderClose}>
