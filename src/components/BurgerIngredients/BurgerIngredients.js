@@ -7,7 +7,7 @@ import IngredientDetails from "../IngredientDetails/IngredientDetails";
 import PropTypes from 'prop-types'
 
 BurgerIngredients.propTypes ={
-    items: PropTypes.array.isRequired
+    items: PropTypes.object.isRequired
 }
 
 export default function BurgerIngredients(props) {

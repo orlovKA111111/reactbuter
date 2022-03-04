@@ -11,7 +11,7 @@ import {
 
 export default function App () {
         const [state, setState] = React.useState({
-            data: []
+            data: {}
         });
 
 
