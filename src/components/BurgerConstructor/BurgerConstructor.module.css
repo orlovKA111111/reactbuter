@@ -1,0 +1,40 @@
+.constructor-element{
+width: 100%;
+ margin-right: 16px;
+}
+
+.itemConstructor{
+ margin-top: 16px;
+ padding-right: 16px;
+ align-content: center;
+ align-items: center;
+ display: flex;
+ justify-content: flex-end;
+}
+.itemConstructorTop {
+ padding-right: 14px;
+}
+.itemConstructorBottom {
+ padding-right: 14px;
+}
+
+.itemConstructorBody{
+ position: relative;
+ height: 450px;
+ overflow-y: scroll;
+ overflow-x: hidden;
+ scrollbar-width: thin;
+}
+
+.buttonOrderCreate{
+ margin-right: 40px;
+ display: flex;
+ padding: 10px;
+}
+.orderButtonPrice{
+ margin-top: 40px;
+ display: flex;
+ justify-content: flex-end;
+ align-content: center;
+ align-items: center;
+}
