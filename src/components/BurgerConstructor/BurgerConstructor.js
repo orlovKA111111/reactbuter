@@ -5,27 +5,66 @@ import { useModal } from "../ModalWithUseEffect/ModalWithUseEffect";
 import style from "./BurgerConstructor.module.css"
 import OrderDetails from "../OrderDetails/OrderDetails";
 import PropTypes from 'prop-types'
+import { ContextOrderBurger } from "../../server/ContextOrderBurger"
 
 BurgerConstructor.propTypes ={
     items: PropTypes.object.isRequired
 }
 
 export default function BurgerConstructor(props) {
+    const [state, setState] = React.useState({
+        data: []
+    });
     const {open} = useModal();
-    const arrItems = props.items.data;
+    const arrItems = props.items.data; /*место куда будет передоватся масив товары котрые будут в конструкторе*/
     const sumPrice = !arrItems?'':arrItems.map((i) => i.price).reduce((n,s)=> n+s );
 
     const onOpenPopup = React.useCallback(((event) => {
         const itemsKey = event.currentTarget.getAttribute('name');
+
+        const arrIdIngredients = arrItems.map(product => product._id);
+
+
+        const getOrderItems = async () => {
+
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer my-token',
+                    'My-Custom-Header': 'foobar'
+                },
+                ingredients: JSON.stringify(arrIdIngredients)
+
+            };
+            console.log(requestOptions)
+            const res = await fetch("https://norma.nomoreparties.space/api/orders", requestOptions);
+            if (!res.ok){
+                const mes = `Error: ${res.status}`;
+                throw new Error(mes);
+            }
+            const data = await res.json();
+            setState({...state, data: data});
+
+        };
+        getOrderItems().catch(e => {
+            alert(e.mes);
+        });
+
+
         return open(<Modal><OrderDetails selectedSum={itemsKey} /></Modal>)
     }), [open]);
 
+
+
+
     function Buns (props) {
+        const idBun = '60d3b41abdacab0026a733c6';
         const n =+ 1;
         return (
             <div>
                 {!arrItems ?'':(
-                    arrItems.map((i, index) =>(i.type !== 'bun' |  i._id !== '60d3b41abdacab0026a733c6'?'':
+                    arrItems.map((i, index) =>(i.type !== 'bun' |  i._id !== idBun?'':
                             <div key={index+n}>
                             <div className={style.itemConstructor} key={i._id+index+n}>
                                 {i.type === 'bun'?'':<DragIcon type="primary" />}
@@ -87,7 +126,7 @@ export default function BurgerConstructor(props) {
     }
 
     return (
-        <div>
+        <ContextOrderBurger.Provider value={arrItems} >
             <Bar />
             <div className={style.orderButtonPrice}>
                 <span className="text text_type_digits-default">
@@ -96,9 +135,9 @@ export default function BurgerConstructor(props) {
                 <div className={style.buttonOrderCreate}>
                     <CurrencyIcon type="primary" size="small"/>
                 </div>
-                <Button className="text text_type_digits-medium" name={sumPrice} onClick={onOpenPopup}  type="primary" size="large">ОФОРМИТЬ</Button>
+                <Button className="text text_type_digits-medium" onClick={onOpenPopup}  type="primary" size="large">ОФОРМИТЬ</Button>
             </div>
-        </div>
+        </ContextOrderBurger.Provider>
     )
 }
 

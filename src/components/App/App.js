@@ -25,7 +25,7 @@ export default function App () {
                 const data = await res.json();
                 setState({...state, data: data});
             };
-            return getIngredients().catch(e => {
+            getIngredients().catch(e => {
                 alert(e.mes);
             });
         },[])

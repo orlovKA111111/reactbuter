@@ -11,12 +11,15 @@ BurgerIngredients.propTypes ={
 }
 
 export default function BurgerIngredients(props) {
+
+
     const arrItems = props.items.data
     const {open} = useModal()
 
     const onOpenPopup = React.useCallback(((event) => {
         const itemsKey = event.currentTarget.getAttribute('name');
         const nextSelectedProduct = arrItems.find(product => product._id === itemsKey);
+
         return open(<Modal><IngredientDetails selectedItem={nextSelectedProduct} /></Modal> )
     }), [open, arrItems])
 
