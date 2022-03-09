@@ -6,60 +6,29 @@ import style from "./BurgerConstructor.module.css"
 import OrderDetails from "../OrderDetails/OrderDetails";
 import PropTypes from 'prop-types'
 import { ContextOrderBurger } from "../../server/ContextOrderBurger"
+import {GetOrderNumber} from "../urlRequest/urlOrder";
 
 BurgerConstructor.propTypes ={
     items: PropTypes.object.isRequired
 }
 
 export default function BurgerConstructor(props) {
-    const [state, setState] = React.useState({
-        data: []
-    });
     const {open} = useModal();
-    const arrItems = props.items.data; /*место куда будет передоватся масив товары котрые будут в конструкторе*/
+    const arrItems = props.items.data; /*место куда будет передоватся масcив товары котрые будут в конструкторе*/
     const sumPrice = !arrItems?'':arrItems.map((i) => i.price).reduce((n,s)=> n+s );
 
     const onOpenPopup = React.useCallback(((event) => {
         const itemsKey = event.currentTarget.getAttribute('name');
+        const arrIdIngredients = !arrItems?'':arrItems.map(product => product._id);
 
-        const arrIdIngredients = arrItems.map(product => product._id);
-
-
-        const getOrderItems = async () => {
-
-            const requestOptions = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer my-token',
-                    'My-Custom-Header': 'foobar'
-                },
-                ingredients: JSON.stringify(arrIdIngredients)
-
-            };
-            console.log(requestOptions)
-            const res = await fetch("https://norma.nomoreparties.space/api/orders", requestOptions);
-            if (!res.ok){
-                const mes = `Error: ${res.status}`;
-                throw new Error(mes);
-            }
-            const data = await res.json();
-            setState({...state, data: data});
-
-        };
-        getOrderItems().catch(e => {
-            alert(e.mes);
-        });
-
-
-        return open(<Modal><OrderDetails selectedSum={itemsKey} /></Modal>)
+        return open(<Modal>
+            <OrderDetails selectedSum={itemsKey} />
+            <GetOrderNumber order = {arrIdIngredients} />
+        </Modal>)
     }), [open]);
 
-
-
-
     function Buns (props) {
-        const idBun = '60d3b41abdacab0026a733c6';
+        const idBun = '60d3b41abdacab0026a733c6'; /*место где будет добовлятся ппервая булка*/
         const n =+ 1;
         return (
             <div>
