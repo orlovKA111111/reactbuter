@@ -1,28 +1,32 @@
-import React  from 'react';
+import React, {useContext} from 'react';
 import {CurrencyIcon , Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import style from'./BurgerIngredientsStyle.module.css'
 import Modal from './../Modal/Modal'
 import {useModal} from "../ModalWithUseEffect/ModalWithUseEffect";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
-import PropTypes from 'prop-types'
+import {APIContext, APIIngredients, Ingredient} from "../../server/context/contextAPI";
+import PropTypes from "prop-types";
 
 BurgerIngredients.propTypes ={
-    items: PropTypes.object.isRequired
+    items: PropTypes.array.isRequired
 }
 
-export default function BurgerIngredients(props) {
-
-
-    const arrItems = props.items.data
+export default function BurgerIngredients() {
+    const items = useContext(APIContext)
+    const arrItems = items.data;
     const {open} = useModal()
 
     const onOpenPopup = React.useCallback(((event) => {
         const itemsKey = event.currentTarget.getAttribute('name');
         const nextSelectedProduct = arrItems.find(product => product._id === itemsKey);
-
-        return open(<Modal><IngredientDetails selectedItem={nextSelectedProduct} /></Modal> )
+        return open(
+            <APIIngredients.Provider value={nextSelectedProduct}>
+            <Modal>
+                <IngredientDetails />
+            </Modal>
+            </APIIngredients.Provider>
+        )
     }), [open, arrItems])
-
 
     const sidebar = (arrItems !== undefined ?(
         <div className={style.cadItems}>

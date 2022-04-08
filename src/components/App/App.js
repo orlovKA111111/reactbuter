@@ -8,6 +8,7 @@ import {
     ModalContenxt,
     modalControl
 } from "../ModalWithUseEffect/ModalWithUseEffect";
+import {APIContext} from "../../server/context/contextAPI";
 
 export default function App () {
         const [state, setState] = React.useState({
@@ -29,23 +30,24 @@ export default function App () {
                 alert(e.mes);
             });
         },[])
-
     return (
+        <APIContext.Provider value={state.data}>
         <ModalContenxt.Provider value={modalControl}>
             <div className={style.App} >
                 <Header />
                 <div className={style.AppBodyBurger}>
                     <div className={style.AppBlock}>
                         <h1>Собери бургер</h1>
-                        <BurgerIngredients items={state.data} />
+                        <BurgerIngredients />
                     </div>
                     <div className={style.AppBlockConstructor}>
-                        <BurgerConstructor items={state.data} />
+                        <BurgerConstructor />
                     </div>
                 </div>
             </div>
             <ModalWithUseEffect />
         </ModalContenxt.Provider>
+        </APIContext.Provider>
     );
 }
 

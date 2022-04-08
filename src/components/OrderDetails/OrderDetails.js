@@ -1,11 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import style from './OrderDetails.module.css'
+import {APIOrder} from "../../server/context/contextAPI";
 
 export default function OrderDetails(){
+    const number = useContext(APIOrder)
+
+    console.log(number,'inf')
      return (
              <div className={style.orderBody}>
-                 <p className="pl-2 pr-2 pb-2 pt-15 text text_type_digits-large">034536</p>
+                 <p className="pl-2 pr-2 pb-2 pt-15 text text_type_digits-large">{number}</p>
                  <p className="pl-2 pr-2 pb-10 pt-32 text text_type_main-default">индификатор заказа</p>
                  <div className={style.OrderCheck}>
                      <CheckMarkIcon type="primary" />
