@@ -8,7 +8,7 @@ import {APIContext, APIIngredients, Ingredient} from "../../server/context/conte
 import PropTypes from "prop-types";
 
 BurgerIngredients.propTypes ={
-    items: PropTypes.array.isRequired
+    items: PropTypes.object
 }
 
 export default function BurgerIngredients() {

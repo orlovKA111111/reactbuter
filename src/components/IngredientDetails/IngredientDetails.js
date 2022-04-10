@@ -4,37 +4,37 @@ import PropTypes from 'prop-types'
 import {APIIngredients} from "../../server/context/contextAPI";
 
 IngredientDetails.propTypes ={
-    Ingredient: PropTypes.object.isRequired
+    nextSelectedProduct: PropTypes.object
 }
 
 export default function IngredientDetails(){
-    const Ingredient = React.useContext(APIIngredients)
+    const nextSelectedProduct = React.useContext(APIIngredients)
     return (
             <div className={style.popup}>
                 <h2 className={style.popupHeader}>Детали иградиента</h2>
-                <img className={style.popupImgItem} src={Ingredient.image} />
-                <span className={style.popupNameItem}>{Ingredient.name}</span>
+                <img className={style.popupImgItem} src={nextSelectedProduct.image} />
+                <span className={style.popupNameItem}>{nextSelectedProduct.name}</span>
 
                 <div className={style.popupItem} >
                         <span>
                                 Калории,ккал
                             <br/>
-                            {Ingredient.calories}
+                            {nextSelectedProduct.calories}
                         </span>
                     <span>
                                 Белки, г
                             <br/>
-                        {Ingredient.proteins}
+                        {nextSelectedProduct.proteins}
                         </span>
                     <span>
                                 Жиры, г
                             <br/>
-                        {Ingredient.fat}
+                        {nextSelectedProduct.fat}
                         </span>
                     <span>
                                 Углеводы г
                             <br/>
-                        {Ingredient.carbohydrates}
+                        {nextSelectedProduct.carbohydrates}
                         </span>
                 </div>
             </div>
