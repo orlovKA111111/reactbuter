@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import style from './OrderDetails.module.css'
-import {APIOrder, BaseUrl} from "../../server/context/contextAPI";
+import {APIOrder} from "../../server/context/contextAPI";
 import PropTypes from "prop-types";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 
@@ -10,9 +10,8 @@ BurgerConstructor.propTypes ={
     url: PropTypes.string
 }
 
-export default function OrderDetails(){
+export default function OrderDetails(props){
     const arrKeyt = React.useContext(APIOrder)
-    const url = React.useContext(BaseUrl)
 
     const [orders, setOrders] = React.useState({
         data: []
@@ -21,7 +20,7 @@ export default function OrderDetails(){
     React.useEffect(() => {
         const getOrders = async () => {
 
-            const res = await fetch(url + `orders`, {
+            const res = await fetch(props.url + `orders`, {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'
@@ -42,7 +41,7 @@ export default function OrderDetails(){
         getOrders().catch(e => {
             alert(e);
         });
-    },[url, arrKeyt])
+    },[props.url, arrKeyt])
     console.log(orders);
 
 

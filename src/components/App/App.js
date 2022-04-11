@@ -8,7 +8,7 @@ import {
     ModalContenxt,
     modalControl
 } from "../ModalWithUseEffect/ModalWithUseEffect";
-import {APIContext, BaseUrl} from "../../server/context/contextAPI";
+import {APIContext} from "../../server/context/contextAPI";
 
 export default function App () {
         const [items, setItems] = React.useState({
@@ -32,28 +32,25 @@ export default function App () {
             });
         },[url])
 
-    console.log(items)
     return (
-        <BaseUrl.Provider value={url}>
         <APIContext.Provider value={items.data}>
-        <ModalContenxt.Provider value={modalControl}>
-            <div className={style.App} >
-                <Header />
-                <div className={style.AppBodyBurger}>
-                    <div className={style.AppBlock}>
-                        <h1>Собери бургер</h1>
-                        <BurgerIngredients />
-                    </div>
-                    <div className={style.AppBlockConstructor}>
-                        <BurgerConstructor />
+            <ModalContenxt.Provider value={modalControl}>
+                <div className={style.App} >
+                    <Header />
+                    <div className={style.AppBodyBurger}>
+                        <div className={style.AppBlock}>
+                            <h1>Собери бургер</h1>
+                            <BurgerIngredients />
+                        </div>
+                        <div className={style.AppBlockConstructor}>
+                            <BurgerConstructor url={url} />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="modals"></div>
-            <ModalWithUseEffect />
-        </ModalContenxt.Provider>
+                <div id="modals"></div>
+                <ModalWithUseEffect />
+            </ModalContenxt.Provider>
         </APIContext.Provider>
-        </BaseUrl.Provider>
     );
 }
 

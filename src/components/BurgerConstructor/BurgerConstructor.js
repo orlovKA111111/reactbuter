@@ -5,13 +5,13 @@ import { useModal } from "../ModalWithUseEffect/ModalWithUseEffect";
 import style from "./BurgerConstructor.module.css"
 import OrderDetails from "../OrderDetails/OrderDetails";
 import PropTypes from 'prop-types'
-import {APIContext, APIOrder, BaseUrl} from "../../server/context/contextAPI";
+import {APIContext, APIOrder} from "../../server/context/contextAPI";
 import reduse from "../../server/reducers/reduse";
 
 BurgerConstructor.propTypes ={
     items: PropTypes.object
 }
-export default function BurgerConstructor() {
+export default function BurgerConstructor(props) {
     const items = React.useContext(APIContext)
     const arrItems = items.data; /*место куда будет передоватся масcив товары котрые будут в конструкторе*/
     const sumPrice = !arrItems?'':arrItems.map((i) => i.price).reduce((n,s)=> n+s )
@@ -25,16 +25,14 @@ export default function BurgerConstructor() {
         const arrKey = Array.from(div1)
         const arrKeyt = arrKey.map((i) => i.getAttribute("idkeyitem"))
 
-
-
         return open(
             <APIOrder.Provider value={arrKeyt}>
                 <Modal>
-                    <OrderDetails />
+                    <OrderDetails url={props.url}/>
                 </Modal>
             </APIOrder.Provider>
         )
-    }), [open]);
+    }), [open, props.url]);
 
 
     function Buns (props) {
@@ -45,7 +43,7 @@ export default function BurgerConstructor() {
                 {!arrItems ?'':(
                     arrItems.map((i, index) =>(i.type !== 'bun' |  i._id !== idBun?'':
                             <div key={index+n}>
-                            <div className={style.itemConstructor} id='div1' idkeyitem={i._id} key={i._id+index+n}>
+                            <div className={style.itemConstructor} idkeyitem={i._id} key={i._id+index+n}>
                                 {i.type === 'bun'?'':<DragIcon type="primary" />}
                                 <div className={style.itemConstructorTop}>
                                     <ConstructorElement
@@ -61,7 +59,7 @@ export default function BurgerConstructor() {
                                 <div className={style.itemConstructorBody}>
                                 {props.children}
                                 </div>
-                                <div className={style.itemConstructor} id='div1' idkeyitem={i._id} key={i._id+index}>
+                                <div className={style.itemConstructor} idkeyitem={i._id} key={i._id+index}>
                                     {i.type === 'bun'?'':<DragIcon type="primary" />}
                                     <div className={style.itemConstructorBottom}>
 
@@ -87,7 +85,7 @@ export default function BurgerConstructor() {
             <Buns>
               {!arrItems ?'':(
                     arrItems.map((i, index) =>(i.type === 'bun'?'':
-                            <div className={style.itemConstructor} id='div1' idkeyitem={i._id} key={i._id+index}>
+                            <div className={style.itemConstructor} idkeyitem={i._id} key={i._id+index}>
                                 {i.type === 'bun'?'':<DragIcon type="primary" />}
                                 <ConstructorElement
                                     type = {i.type === 'bun'?'top':''}
