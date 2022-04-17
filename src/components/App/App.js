@@ -8,49 +8,40 @@ import {
     ModalContenxt,
     modalControl
 } from "../ModalWithUseEffect/ModalWithUseEffect";
-import {APIContext} from "../../server/context/contextAPI";
+import { getIngredients } from "../../server/action/ingredients";
+import { useDispatch } from 'react-redux';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
+
 
 export default function App () {
-        const [items, setItems] = React.useState({
-            data: {},
-        });
-        const url = "https://norma.nomoreparties.space/api/"
-    React.useEffect(() => {
 
-               const getIngredients = async () => {
-                const res = await fetch(url+"ingredients");
-                if (!res.ok){
-                    const mes = `Error: ${res.status}`;
-                    throw new Error(mes);
-                }
+    const dispatch = useDispatch();
 
-                   const data = await res.json();
-                   setItems({...items, data: data});
-            };
-            getIngredients().catch(e => {
-                alert(e.mes);
-            });
-        },[url])
+    React.useEffect(()=>{
+        console.log(getIngredients(), 'getIngredients')
+        dispatch(getIngredients())
+    }, [dispatch]);
 
     return (
-        <APIContext.Provider value={items.data}>
             <ModalContenxt.Provider value={modalControl}>
                 <div className={style.App} >
                     <Header />
                     <div className={style.AppBodyBurger}>
-                        <div className={style.AppBlock}>
-                            <h1>Собери бургер</h1>
-                            <BurgerIngredients />
-                        </div>
-                        <div className={style.AppBlockConstructor}>
-                            <BurgerConstructor url={url} />
-                        </div>
+                        <DndProvider backend={HTML5Backend}>
+                            <div className={style.AppBlock}>
+                                <h1>Собери бургер</h1>
+                                <BurgerIngredients />
+                            </div>
+                            <div className={style.AppBlockConstructor}>
+                                <BurgerConstructor />
+                            </div>
+                        </DndProvider>
+
                     </div>
                 </div>
-                <div id="modals"></div>
                 <ModalWithUseEffect />
             </ModalContenxt.Provider>
-        </APIContext.Provider>
     );
 }
 

@@ -1,53 +1,22 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import style from './OrderDetails.module.css'
-import {APIOrder} from "../../server/context/contextAPI";
+import {useSelector}  from "react-redux";
 import PropTypes from "prop-types";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 
 BurgerConstructor.propTypes ={
-    arrKeyt: PropTypes.object,
-    url: PropTypes.string
+    order: PropTypes.object,
 }
 
-export default function OrderDetails(props){
-    const arrKeyt = React.useContext(APIOrder)
-
-    const [orders, setOrders] = React.useState({
-        data: []
-    });
-
-    React.useEffect(() => {
-        const getOrders = async () => {
-
-            const res = await fetch(props.url + `orders`, {
-                method: "POST",
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify({
-                    "ingredients": arrKeyt
-                })
-
-            });
-            if (!res.ok) {
-                const mes = `Error: ${res.status}`;
-                throw new Error(mes);
-            }
-            const data = await res.json();
-            setOrders({...orders, data: data.order.number});
-
-        };
-        getOrders().catch(e => {
-            alert(e);
-        });
-    },[props.url, arrKeyt])
-    console.log(orders);
-
+export default function OrderDetails(){
+    const { orderObject } = useSelector(
+        state => state.order
+    );
 
      return (
              <div className={style.orderBody}>
-                 <p className="pl-2 pr-2 pb-2 pt-15 text text_type_digits-large">{orders.data}</p>
+                 <p className="pl-2 pr-2 pb-2 pt-15 text text_type_digits-large">{orderObject.number}</p>
                  <p className="pl-2 pr-2 pb-10 pt-32 text text_type_main-default">индификатор заказа</p>
                  <div className={style.OrderCheck}>
                      <CheckMarkIcon type="primary" />

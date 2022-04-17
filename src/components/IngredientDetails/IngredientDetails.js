@@ -1,40 +1,44 @@
 import React from 'react'
 import style from './IngredientDetails.module.css'
 import PropTypes from 'prop-types'
-import {APIIngredients} from "../../server/context/contextAPI";
+import { useSelector } from  'react-redux'
 
 IngredientDetails.propTypes ={
-    nextSelectedProduct: PropTypes.object
+    ingredients: PropTypes.object
 }
 
 export default function IngredientDetails(){
-    const nextSelectedProduct = React.useContext(APIIngredients)
+    const { itemDetails } = useSelector(
+        state => state.ingredients
+    );
+
+    const { image_large, name, calories, proteins, fat, carbohydrates } = itemDetails;
     return (
             <div className={style.popup}>
                 <h2 className={style.popupHeader}>Детали иградиента</h2>
-                <img className={style.popupImgItem} src={nextSelectedProduct.image} />
-                <span className={style.popupNameItem}>{nextSelectedProduct.name}</span>
+                <img className={style.popupImgItem} src={image_large} />
+                <span className={style.popupNameItem}>{name}</span>
 
                 <div className={style.popupItem} >
                         <span>
                                 Калории,ккал
                             <br/>
-                            {nextSelectedProduct.calories}
+                            {calories}
                         </span>
                     <span>
                                 Белки, г
                             <br/>
-                        {nextSelectedProduct.proteins}
+                        {proteins}
                         </span>
                     <span>
                                 Жиры, г
                             <br/>
-                        {nextSelectedProduct.fat}
+                        {fat}
                         </span>
                     <span>
                                 Углеводы г
                             <br/>
-                        {nextSelectedProduct.carbohydrates}
+                        {carbohydrates}
                         </span>
                 </div>
             </div>
