@@ -6,13 +6,14 @@ import OrderDetails from "../OrderDetails/OrderDetails";
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from "react-redux";
 import { useDrop, useDrag } from 'react-dnd';
-import { getIngredients } from "../../server/action/order";
+import { getIngredients } from "../../services/action/order";
+import { ADD_BUN_CONSTRUCTOR, ADD_INGREDIENT_CONSTRUCTOR, MOVE_ITEM_CONSTRUCTOR, RESET_CONSTRUCTOR } from '../../services/action/constructor';
 
 
 
 BurgerConstructor.propTypes ={
     items: PropTypes.object,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     num: PropTypes.number,
     position: PropTypes.string
 }
@@ -81,6 +82,7 @@ export default function BurgerConstructor(props) {
         item: {id, num, ref},
     });
     drag(ref);
+
     const deleteIngredient = () => {
         dispatch({type:DELETE_ITEM_CONSTRUCTOR, num:num});
     }

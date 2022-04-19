@@ -8,7 +8,7 @@ import {
     ModalContenxt,
     modalControl
 } from "../ModalWithUseEffect/ModalWithUseEffect";
-import { getIngredients } from "../../server/action/ingredients";
+import { getIngredients } from "../../services/action/ingredients";
 import { useDispatch } from 'react-redux';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
