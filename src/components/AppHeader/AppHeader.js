@@ -2,7 +2,7 @@ import React from 'react';
 import { ProfileIcon, Logo, BurgerIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import style from './AppHeader.module.css'
 
-export default function  Header() {
+export default function AppHeader() {
 
         return(
             <header>

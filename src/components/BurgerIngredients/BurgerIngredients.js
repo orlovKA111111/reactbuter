@@ -10,10 +10,9 @@ BurgerIngredients.propTypes ={
 }
 
 export default function BurgerIngredients() {
-
     const [current, setCurrent] = React.useState('bun');
-
     const ref = React.useRef(null);
+
     const bunRef = React.useRef(null);
     const sauceRef = React.useRef(null);
     const mainRef = React.useRef(null);
@@ -35,25 +34,21 @@ export default function BurgerIngredients() {
         if (current === 'main') mainRef.current.scrollIntoView(true);
     };
 
-    const TabIngradiant =()=> {
-        return (
+
+
+    return (
+        <section className='text text_type_main-default'>
             <div className={style.tab}>
-              <Tab value="bun" active={current === 'bun'} onClick={handleClick}>
+                <Tab value="bun" active={current === 'bun'} onClick={handleClick}>
                     Булки
                 </Tab>
-                 <Tab value="sauce" active={current === 'sauce'} onClick={handleClick}>
+                <Tab value="sauce" active={current === 'sauce'} onClick={handleClick}>
                     Соусы
                 </Tab>
                 <Tab value="main" active={current === 'main'} onClick={handleClick}>
                     Начинки
                 </Tab>
             </div>
-        )
-    }
-
-    return (
-        <div className='text text_type_main-default'>
-            <TabIngradiant ref={ref} onScroll={onScroll} />
             <div className={style.itemIngredientBody}>
                 <div>
                     <IngredientsList ref={bunRef} name="Булки" ename="bun"/>
@@ -65,6 +60,6 @@ export default function BurgerIngredients() {
                     <IngredientsList ref={mainRef} name="Начинки" ename="main"/>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import style from './App.module.css';
-import Header from "../AppHeader/AppHeader";
 import BurgerIngredients from "../BurgerIngredients/BurgerIngredients"
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor"
 import {
@@ -12,21 +11,25 @@ import { getIngredients } from "../../services/action/ingredients";
 import { useDispatch } from 'react-redux';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
+import AppHeader from "../AppHeader/AppHeader";
 
 
 export default function App () {
 
     const dispatch = useDispatch();
 
-    React.useEffect(()=>{
-        console.log(getIngredients(), 'getIngredients')
-        dispatch(getIngredients())
-    }, [dispatch]);
+    React.useEffect(
+        () => {
+            dispatch(getIngredients());
+        },
+        [dispatch]
+    );
+
 
     return (
             <ModalContenxt.Provider value={modalControl}>
                 <div className={style.App} >
-                    <Header />
+                    <AppHeader />
                     <div className={style.AppBodyBurger}>
                         <DndProvider backend={HTML5Backend}>
                             <div className={style.AppBlock}>
@@ -37,10 +40,12 @@ export default function App () {
                                 <BurgerConstructor />
                             </div>
                         </DndProvider>
-
                     </div>
                 </div>
-                <ModalWithUseEffect />
+                <>
+                    <ModalWithUseEffect />
+                </>
+
             </ModalContenxt.Provider>
     );
 }

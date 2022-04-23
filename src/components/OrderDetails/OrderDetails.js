@@ -9,14 +9,13 @@ BurgerConstructor.propTypes ={
     order: PropTypes.object,
 }
 
-export default function OrderDetails(){
-    const { orderObject } = useSelector(
-        state => state.order
-    );
-
+export default function OrderDetails(order){
+        console.log(order)
+    console.log(order.number)
+    const number = order.number
      return (
              <div className={style.orderBody}>
-                 <p className="pl-2 pr-2 pb-2 pt-15 text text_type_digits-large">{orderObject.number}</p>
+                 <p className="pl-2 pr-2 pb-2 pt-15 text text_type_digits-large">{number}</p>
                  <p className="pl-2 pr-2 pb-10 pt-32 text text_type_main-default">индификатор заказа</p>
                  <div className={style.OrderCheck}>
                      <CheckMarkIcon type="primary" />

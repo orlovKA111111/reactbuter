@@ -7,13 +7,11 @@ IngredientDetails.propTypes ={
     ingredients: PropTypes.object
 }
 
-export default function IngredientDetails(){
-    const { itemDetails } = useSelector(
-        state => state.ingredients
-    );
-
-    const { image_large, name, calories, proteins, fat, carbohydrates } = itemDetails;
+export default function IngredientDetails(ingredients){
+console.log(ingredients)
+    const { image_large, name, calories, proteins, fat, carbohydrates } = ingredients.ingredients ;
     return (
+        !ingredients?'':
             <div className={style.popup}>
                 <h2 className={style.popupHeader}>Детали иградиента</h2>
                 <img className={style.popupImgItem} src={image_large} />
@@ -43,4 +41,5 @@ export default function IngredientDetails(){
                 </div>
             </div>
     )
+
 }

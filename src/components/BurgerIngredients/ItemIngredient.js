@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 
 
 ItemIngredient.propTypes = {
-    product: PropTypes.isRequired
+    product: PropTypes.object
 };
 
 export default function ItemIngredient ({ product }) {
@@ -21,16 +21,6 @@ export default function ItemIngredient ({ product }) {
         state => state.construct
     );
     const {open} = useModal()
-
-    const onOpenPopup = React.useCallback((() => {
-        dispatch({type:ADD_INGREDIENTS_OBJECT, id:items._id});
-        return open(
-            <Modal>
-                <IngredientDetails />
-            </Modal>
-        )
-    }), [open])
-
 
     const [{ opacity }, ref] = useDrag({
         type: 'items',
@@ -61,10 +51,17 @@ export default function ItemIngredient ({ product }) {
         <span className={styles.name + ' text text_type_main-default'}>{product.name}</span>
         {count > 0 && <Counter count={count} size="default" />}
     </div>*/
+    const onOpenPopup = React.useCallback((() => {
+        dispatch({type:ADD_INGREDIENTS_OBJECT, id:product._id});
+        return open(
+            <Modal>
+                <IngredientDetails ingredients={product}/>
+            </Modal>
+        )
+    }), [open, product])
+
 
     return (
-
-
         <div className={styles.cadItems} style={{ opacity }} onClick={onOpenPopup}  ref={ref}>
             <div key={product._id}  className={styles.item}>
                 {count > 0 && <Counter count={count} size="default" />}
@@ -76,6 +73,5 @@ export default function ItemIngredient ({ product }) {
                 <span>{product.name}</span>
             </div>
         </div>
-
     )
 };
