@@ -13,8 +13,7 @@ export default function OrderDetails(){
     const { orderObject } = useSelector(
         state => state.order
     );
-
-     return (
+    return (
              <div className={style.orderBody}>
                  <p className="pl-2 pr-2 pb-2 pt-15 text text_type_digits-large">{orderObject.number}</p>
                  <p className="pl-2 pr-2 pb-10 pt-32 text text_type_main-default">индификатор заказа</p>

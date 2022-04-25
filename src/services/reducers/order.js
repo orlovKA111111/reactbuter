@@ -1,8 +1,8 @@
 import {
-GET_ORDER_REQUEST,
-GET_ORDER_SUCCESS,
-GET_ORDER_FAILED,
-RESET_ORDER_OBJECT
+    GET_ORDER_REQUEST,
+    GET_ORDER_SUCCESS,
+    GET_ORDER_FAILED,
+    RESET_ORDER_OBJECT
 } from '../action/order';
 
 const initialState = {

@@ -1,39 +1,41 @@
-import React from 'react'
-import style from './Modal.module.css'
-import ModalOverlay from "../ModalOverlay/ModalOverlay"
-import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import {ModalContenxt} from "../ModalWithUseEffect/ModalWithUseEffect";
-import PropTypes from 'prop-types'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import styles from './Modal.module.css';
+import ModalOverlay from '../ModalOverlay/ModalOverlay';
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-Modal.propTypes ={
-    children: PropTypes.object.isRequired
-}
 
-export default function Modal(props) {
-    const {control} = React.useContext(ModalContenxt)
+Modal.propTypes = {
+    onClose: PropTypes.func,
+    children: PropTypes.object
+};
+ export default function Modal({onClose, children}) {
+    const modalRoot = document.getElementById("modals");
+
+    const onPressEsc = React.useCallback((e) => {
+        if (e.key === 'Escape') onClose();
+    }, [onClose]);
+
     React.useEffect(() => {
-        const closeFn = (event) => {
-            if(event.key === 'Escape') {
-                control.close()
-            }
-        }
-
-        document.addEventListener('keydown', closeFn)
-
+        document.addEventListener('keydown', onPressEsc);
         return () => {
-            document.removeEventListener('keydown', closeFn)
-        }
-    }, [control.close])
+            document.removeEventListener('keydown', onPressEsc);
+        };
+    }, [onPressEsc]);
 
-    return (
-            <div className='text text_type_main-default'>
-                <ModalOverlay />
-                <div title='Бургер' className={style.Modal} >
-                    <div  className={style.OrderClose}>
-                        <CloseIcon onClick={control.close} type="primary" />
-                    </div>
-                    {props.children}
+    return ReactDOM.createPortal(
+        <div className={(children != null) ? styles.wrap_active : styles.wrap}>
+            <ModalOverlay onClose={onClose} />
+            <div className={styles.modal}>
+                <div className={styles.close} onClick={onClose} >
+                <CloseIcon type="primary" />
                 </div>
+
+                {children}
             </div>
+        </div>
+        ,
+        modalRoot
     );
 }

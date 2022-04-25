@@ -35,36 +35,25 @@ export default function BurgerIngredients() {
         if (current === 'main') mainRef.current.scrollIntoView(true);
     };
 
-    const TabIngradiant =()=> {
-        return (
-            <div className={style.tab}>
-              <Tab value="bun" active={current === 'bun'} onClick={handleClick}>
+    return (
+        <section className={style.wrap + ' mr-10'}>
+            <h1 className="text text_type_main-large">Соберите бургер</h1>
+            <div className={style.nav + ' mt-5 mb-10'}>
+                <Tab value='bun' active={current === 'bun'} onClick={handleClick}>
                     Булки
                 </Tab>
-                 <Tab value="sauce" active={current === 'sauce'} onClick={handleClick}>
+                <Tab value='sauce' active={current === 'sauce'} onClick={handleClick}>
                     Соусы
                 </Tab>
-                <Tab value="main" active={current === 'main'} onClick={handleClick}>
+                <Tab value='main' active={current === 'main'} onClick={handleClick}>
                     Начинки
                 </Tab>
             </div>
-        )
-    }
-
-    return (
-        <div className='text text_type_main-default'>
-            <TabIngradiant ref={ref} onScroll={onScroll} />
-            <div className={style.itemIngredientBody}>
-                <div>
-                    <IngredientsList ref={bunRef} name="Булки" ename="bun"/>
-                </div>
-                <div>
-                    <IngredientsList ref={sauceRef} name="Соусы" ename="sauce" />
-                </div>
-                <div>
-                    <IngredientsList ref={mainRef} name="Начинки" ename="main"/>
-                </div>
+            <div ref={ref} onScroll={onScroll} className={style.list}>
+                <IngredientsList ref={bunRef} name="Булки" ename="bun" />
+                <IngredientsList ref={sauceRef} name="Соусы" ename="sauce" />
+                <IngredientsList ref={mainRef} name="Начинки" ename="main" />
             </div>
-        </div>
+        </section>
     );
 }

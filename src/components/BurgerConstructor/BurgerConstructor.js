@@ -1,15 +1,16 @@
 import React from 'react';
-import { Button, ConstructorElement, CurrencyIcon, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import Modal from "../Modal/Modal";
+import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./BurgerConstructor.module.css"
-import OrderDetails from "../OrderDetails/OrderDetails";
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from "react-redux";
-import { useDrop, useDrag } from 'react-dnd';
-import { getIngredients } from "../../services/action/order";
-import { ADD_BUN_CONSTRUCTOR, ADD_INGREDIENT_CONSTRUCTOR, MOVE_ITEM_CONSTRUCTOR, RESET_CONSTRUCTOR } from '../../services/action/constructor';
-
-
+import { useDrop } from 'react-dnd';
+import {
+    ADD_BUN_CONSTRUCTOR,
+    ADD_INGREDIENT_CONSTRUCTOR,
+    MOVE_ITEM_CONSTRUCTOR,
+    RESET_CONSTRUCTOR } from '../../services/action/constructor';
+import IngredientConstructor from "./IngredientConstructor";
+import { getOrderNumber } from "../../services/action/order";
 
 BurgerConstructor.propTypes ={
     items: PropTypes.object,
@@ -19,7 +20,7 @@ BurgerConstructor.propTypes ={
 }
 
 export default function BurgerConstructor(props) {
-    const ref = React.useRef(null);
+
     const { items } = useSelector(
         state => state.ingredients
     );
@@ -49,6 +50,19 @@ export default function BurgerConstructor(props) {
         },
     });
 
+    const openOrderPopap = () => {
+        console.log(bun,'bun')
+        if (bun != null) {
+            const orderIngredients = [...ingredients, bun, bun];
+            console.log(orderIngredients);
+
+            console.log(dispatch(getOrderNumber(orderIngredients)));
+
+            dispatch(getOrderNumber(orderIngredients));
+            dispatch({type:RESET_CONSTRUCTOR});
+        }
+    }
+
     const moveItemSub = (item, monitor) => {
         const dist = monitor.getClientOffset().y - item.ref.current.getBoundingClientRect().y;
         const newPos = item.num + Math.floor(dist/100);
@@ -67,7 +81,7 @@ export default function BurgerConstructor(props) {
         },
     });
 
-    const sumPrise = React.useMemo(() => {
+    const sumPrice = React.useMemo(() => {
         let total = 0;
         if (ingredients.length > 0) ingredients.map((item) => total += items.find(product => item === product._id).price);
         if (bun != null) {
@@ -77,115 +91,30 @@ export default function BurgerConstructor(props) {
     }, [ingredients, bun, items]);
 
 
-    const [, drag] = useDrag({
-        type: 'itemsSub',
-        item: {id, num, ref},
-    });
-    drag(ref);
-
-    const deleteIngredient = () => {
-        dispatch({type:DELETE_ITEM_CONSTRUCTOR, num:num});
-    }
-    let product = items.find(item => item._id === id);
-
-
-
-    const onOpenPopup = React.useCallback((() => {
-
-        if (bun != null) {
-            const orderIngredients = [...ingredients, bun, bun];
-            dispatch(getIngredients(orderIngredients));
-            dispatch({type:RESET_CONSTRUCTOR});
-        }
-        return open(
-                <Modal>
-                    <OrderDetails />
-                </Modal>
-        )
-    }), [open]);
-
-
-    function Buns () {
-        const n =+ 1;
-        return (
-            <div>
-                {
-                    product.map((i, index) =>(i.type !== 'bun' |  i._id !== idBun?'':
-                            <div key={index+n}>
-                            <div className={style.itemConstructor} ref={ref} idkeyitem={i._id}  key={i._id+index+n}>
-                                {i.type === 'bun'?'':<DragIcon type="primary" />}
-                                <div className={style.itemConstructorTop}>
-                                    <ConstructorElement
-                                        id={bun}
-                                        type = {i.type === 'bun'?'top':''}
-                                        isLocked = {i.type === 'bun'?'true':''}
-                                        text = {i.name+`${i.type === 'bun'?' (верх)':''}`}
-                                        price = {i.price}
-                                        thumbnail = {i.image_large}
-                                        name = {i.type}
-                                    />
-                                </div>
-                            </div>
-                                <div className={style.itemConstructorBody} ref={dropTargetSub}>
-                                {props.children}
-                                </div>
-                                <div className={style.itemConstructor} ref={keyProps} idkeyitem={i._id}  key={i._id+index}>
-                                    {i.type === 'bun'?'':<DragIcon type="primary" />}
-                                    <div className={style.itemConstructorBottom}>
-                                    <ConstructorElement
-                                        id={bun}
-                                        type = {i.type === 'bun'?'bottom':''}
-                                        isLocked = {i.type === 'bun'?'true':''}
-                                        text = {i.name+`${i.type === 'bun'?' (низ)':''}`}
-                                        price = {i.price}
-                                        thumbnail = {i.image_large}
-                                        name = {i.type}
-                                    />
-                                    </div>
-                                </div>
-                            </div>
-                    ))
-                }
-            </div>
-        )
-    }
-
-    function Bar (){
-        return (
-            <Buns>
-              {
-                  product.map((i, index) =>(i.type === 'bun'?'':
-                            <div className={style.itemConstructor} ref={dropTargetSub} idkeyitem={i._id}  key={i._id+index} >
-                                {i.type === 'bun'?'':<DragIcon type="primary"  />}
-                                <ConstructorElement
-                                    type = {i.type === 'bun'?'top':''}
-                                    isLocked = {i.type === 'bun'?'true':''}
-                                    text = {i.name+`${i.type === 'bun'?' (верх)':''}`}
-                                    price = {i.price}
-                                    thumbnail = {i.image_large}
-                                    name = {i.type}
-                                    handleClose={deleteIngredient}
-                                />
-                            </div>
-                    ))
-                }
-            </Buns>
-        )
-    }
-
     return (
-        <div ref={dropTarget} >
-            <Bar />
-            <div className={style.orderButtonPrice}>
-                <span className="text text_type_digits-default">
-                    {sumPrise}
-                </span>
-                <div className={style.buttonOrderCreate}>
-                    <CurrencyIcon type="primary" size="small"/>
+        <section ref={dropTarget} className={style.wrap + ' mt-15'}>
+            <div className={' mt-4'}>
+                {(bun != null) && <IngredientConstructor id={bun} position='top' /> }
+                <div className={style.main} ref={dropTargetSub}>
+                    {(ingredients.length > 0) && ingredients.map((product, index) =>
+                        <IngredientConstructor
+                            id={product}
+                            num={index}
+                            key={index}
+                        />)}
                 </div>
-                <Button className="text text_type_digits-medium" onClick={onOpenPopup}  type="primary" size="large">ОФОРМИТЬ</Button>
+                {(bun != null) && <IngredientConstructor id={bun} position='bottom' />}
             </div>
-        </div>
-    )
+            <div className={style.footer + ' mt-10'}>
+                    <span className={style.total + ' mr-10'}>
+                      <span className="text text_type_digits-medium mr-4">{sumPrice}</span>
+                        <CurrencyIcon type="primary" />
+                    </span>
+                    <Button type="primary" size="medium" value="" onClick={openOrderPopap}>
+                        Оформить заказ
+                    </Button>
+            </div>
+        </section>
+    );
 }
 

@@ -1,11 +1,10 @@
-import React from "react";
 import { getAPIIngredients } from "../../utlls/api";
 
 export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';
 export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS';
 export const GET_INGREDIENTS_FAILED = 'GET_INGREDIENTS_FAILED';
-export const ADD_INGREDIENTS_OBJECT = 'GET_INGREDIENTS_FAILED';
-export const RESET_INGREDIENTS_OBJECT = 'GET_INGREDIENTS_FAILED';
+export const ADD_INGREDIENTS_OBJECT = 'ADD_INGREDIENTS_OBJECT';
+export const RESET_INGREDIENTS_OBJECT = 'RESET_INGREDIENTS_OBJECT';
 
 export function getIngredients(ingredients) {
     return function(dispatch) {
