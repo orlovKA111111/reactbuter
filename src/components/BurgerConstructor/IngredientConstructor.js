@@ -2,13 +2,19 @@ import React  from 'react';
 import PropTypes from 'prop-types';
 import style from './BurgerConstructor.module.css';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-
+import { v4 as key } from 'uuid';
 import { DELETE_ITEM_CONSTRUCTOR } from '../../services/action/constructor';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 
+ConstructorIngredient.propTypes = {
+    id: PropTypes.string.isRequired,
+    num: PropTypes.number,
+    position: PropTypes.string,
+    ingredients: PropTypes.object
+};
 
-const ConstructorIngredient = ({id, num, position}) => {
+export default function ConstructorIngredient  ({id, num, position}) {
     const ref = React.useRef(null);
     const { items } = useSelector(
         state => state.ingredients
@@ -33,18 +39,10 @@ const ConstructorIngredient = ({id, num, position}) => {
         )
     } else {
         return (
-            <div className={style.item} ref={ref} key={num}>
+            <div className={style.item} ref={ref} key={key()}>
                 <DragIcon type="primary" />
                 <ConstructorElement text={product.name} price={product.price} thumbnail={product.image} handleClose={deleteIngredient}  />
             </div>
         )
     }
 };
-
-ConstructorIngredient.propTypes = {
-    id: PropTypes.string.isRequired,
-    num: PropTypes.number,
-    position: PropTypes.string,
-};
-
-export default ConstructorIngredient;

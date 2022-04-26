@@ -1,13 +1,8 @@
 import React from 'react';
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import style from'./BurgerIngredientsStyle.module.css'
-
-import PropTypes from "prop-types";
 import IngredientsList from './IngredientsList'
 
-BurgerIngredients.propTypes ={
-    items: PropTypes.object
-}
 
 export default function BurgerIngredients() {
 

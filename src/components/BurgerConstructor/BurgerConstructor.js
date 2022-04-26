@@ -11,15 +11,17 @@ import {
     RESET_CONSTRUCTOR } from '../../services/action/constructor';
 import IngredientConstructor from "./IngredientConstructor";
 import { getOrderNumber } from "../../services/action/order";
+import { v4 as key } from 'uuid';
+
 
 BurgerConstructor.propTypes ={
     items: PropTypes.object,
     id: PropTypes.string,
     num: PropTypes.number,
-    position: PropTypes.string
+    position: PropTypes.string,
 }
 
-export default function BurgerConstructor(props) {
+export default function BurgerConstructor() {
 
     const { items } = useSelector(
         state => state.ingredients
@@ -51,13 +53,8 @@ export default function BurgerConstructor(props) {
     });
 
     const openOrderPopap = () => {
-        console.log(bun,'bun')
         if (bun != null) {
             const orderIngredients = [...ingredients, bun, bun];
-            console.log(orderIngredients);
-
-            console.log(dispatch(getOrderNumber(orderIngredients)));
-
             dispatch(getOrderNumber(orderIngredients));
             dispatch({type:RESET_CONSTRUCTOR});
         }
@@ -100,7 +97,7 @@ export default function BurgerConstructor(props) {
                         <IngredientConstructor
                             id={product}
                             num={index}
-                            key={index}
+                            key={key()}
                         />)}
                 </div>
                 {(bun != null) && <IngredientConstructor id={bun} position='bottom' />}

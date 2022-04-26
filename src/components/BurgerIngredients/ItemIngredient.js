@@ -9,7 +9,8 @@ import {ADD_INGREDIENTS_OBJECT} from "../../services/action/ingredients";
 
 
 ItemIngredient.propTypes = {
-    product: PropTypes.object
+    product: PropTypes.object,
+    construct: PropTypes.object
 };
 
 export default function ItemIngredient ({ product }) {

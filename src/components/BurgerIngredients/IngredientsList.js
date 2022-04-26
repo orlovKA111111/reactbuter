@@ -2,6 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import style from "./BurgerIngredientsStyle.module.css";
 import ItemIngredient from "./ItemIngredient";
+import PropTypes from "prop-types";
+
+
+
+
 
 const IngredientsList = React.forwardRef(({ name, ename }, ref ) => {
     const { items } = useSelector(
@@ -17,4 +22,9 @@ const IngredientsList = React.forwardRef(({ name, ename }, ref ) => {
         </div>
     )
 });
+
+IngredientsList.propTypes ={
+    name: PropTypes.string,
+    ename: PropTypes.string
+}
  export default IngredientsList

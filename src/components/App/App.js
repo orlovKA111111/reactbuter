@@ -11,6 +11,7 @@ import { RESET_ORDER_OBJECT } from "../../services/action/order";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
 import OrderDetails from "../OrderDetails/OrderDetails";
 import Modal from "../Modal/Modal";
+import { v4 as item } from 'uuid';
 
 
 export default function App () {
@@ -36,19 +37,18 @@ export default function App () {
     );
 
     const modalContent = (itemObject != null) ? (<IngredientDetails />) : ((orderObject != null) ? (<OrderDetails />) : null)
- console.log(modalContent,'modalContent')
     return (
         <div>
             <Header />
             <main>
                 <div className={style.conteiner}>
                     <DndProvider backend={HTML5Backend}>
-                        <BurgerIngredients key='1' />
-                        <BurgerConstructor key='2' />
+                        <BurgerIngredients key={item.uuid} />
+                        <BurgerConstructor key={item.uuid}  />
                     </DndProvider>
                 </div>
             </main>
-            { (modalContent != null) && (
+            { (modalContent) && (
                 <Modal onClose={handleCloseModal}>
                     {modalContent}
                 </Modal>

@@ -3,9 +3,8 @@ import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components"
 import style from './OrderDetails.module.css'
 import {useSelector}  from "react-redux";
 import PropTypes from "prop-types";
-import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 
-BurgerConstructor.propTypes ={
+OrderDetails.propTypes ={
     order: PropTypes.object,
 }
 
