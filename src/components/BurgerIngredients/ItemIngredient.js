@@ -10,7 +10,6 @@ import {ADD_INGREDIENTS_OBJECT} from "../../services/action/ingredients";
 
 ItemIngredient.propTypes = {
     product: PropTypes.object,
-    construct: PropTypes.object
 };
 
 export default function ItemIngredient ({ product }) {
@@ -36,15 +35,14 @@ export default function ItemIngredient ({ product }) {
             if (product.type === 'bun') {
                 if (bun === product._id) count = 2;
             } else {
-                ingredients.forEach(function(item) {
-                    if (item === product._id) count = count+1;
-                })
+                console.log(ingredients)
+                ingredients.map((item) => item.id === product._id? count = count+1:'' );
             }
             return count;
         },
         [bun, ingredients, product]
     );
-
+ console.log(count)
     return (
         <div className={styles.item + ' mt-6 mb-2'} style={{ opacity }} onClick={openIngredintPopup} ref={ref}>
             <img src={product.image} alt={product.name}/>

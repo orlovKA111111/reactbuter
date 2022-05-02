@@ -1,24 +1,28 @@
 import React  from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, {string} from 'prop-types';
 import style from './BurgerConstructor.module.css';
-import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { v4 as key } from 'uuid';
+import {
+    ConstructorElement,
+    DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DELETE_ITEM_CONSTRUCTOR } from '../../services/action/constructor';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+    useDispatch,
+    useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 
-ConstructorIngredient.propTypes = {
-    id: PropTypes.string.isRequired,
+IngredientConstructor.propTypes = {
+    id: PropTypes.string,
     num: PropTypes.number,
     position: PropTypes.string,
-    ingredients: PropTypes.object
+    k: PropTypes.string
 };
 
-export default function ConstructorIngredient  ({id, num, position}) {
+export default function IngredientConstructor ({id, num, position, k}) {
     const ref = React.useRef(null);
     const { items } = useSelector(
         state => state.ingredients
     );
+
     const dispatch = useDispatch();
     const [, drag] = useDrag({
         type: 'itemsSub',
@@ -28,20 +32,29 @@ export default function ConstructorIngredient  ({id, num, position}) {
     const deleteIngredient = () => {
         dispatch({type:DELETE_ITEM_CONSTRUCTOR, num:num});
     }
-    var product = items.find(item => item._id === id);
+    let product = items.find(item => item._id === id);
     if (position) {
         return (
-            <ConstructorElement text={product.name + ((position === 'top') ? ' (верх)' : ' (низ)')}
-                                isLocked={true}
-                                price={product.price}
-                                thumbnail={product.image}
-                                type={position} />
+            <div className={style.item} ref={ref} key={k}>
+            <ConstructorElement
+                text={product.name + ((position === 'top') ? ' (верх)' : ' (низ)')}
+                isLocked={true}
+                price={product.price}
+                thumbnail={product.image}
+                type={position}
+            />
+            </div>
         )
     } else {
         return (
-            <div className={style.item} ref={ref} key={key()}>
+            <div className={style.item} ref={ref} key={k}>
                 <DragIcon type="primary" />
-                <ConstructorElement text={product.name} price={product.price} thumbnail={product.image} handleClose={deleteIngredient}  />
+                <ConstructorElement
+                    text={product.name}
+                    price={product.price}
+                    thumbnail={product.image}
+                    handleClose={deleteIngredient}
+                />
             </div>
         )
     }

@@ -1,12 +1,6 @@
 import React from 'react';
 import style from './IngredientDetails.module.css'
-import PropTypes from 'prop-types'
 import { useSelector } from  'react-redux'
-
-
-IngredientDetails.propTypes ={
-    ingredients: PropTypes.object
-}
 
 export default function IngredientDetails(){
     const { itemObject } = useSelector(

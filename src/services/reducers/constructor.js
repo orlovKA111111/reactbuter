@@ -16,7 +16,7 @@ export const constructorReducer = (state = initialState, action) => {
         case ADD_INGREDIENT_CONSTRUCTOR: {
             return {
                 ...state,
-                ingredients: [...state.ingredients, action.id]
+                ingredients: [...state.ingredients, {id:action.id, uuid:action.uuid}]
             }
         }
         case ADD_BUN_CONSTRUCTOR: {
@@ -35,8 +35,9 @@ export const constructorReducer = (state = initialState, action) => {
         }
         case MOVE_ITEM_CONSTRUCTOR: {
             const ingredients = [...state.ingredients];
+            const uuid = ingredients[action.pos].uuid;
             ingredients.splice(action.pos, 1);
-            ingredients.splice(action.newPos, 0, action.id);
+            ingredients.splice(action.newPos, 0, {id:action.id, uuid:uuid});
             return {
                 ...state,
                 ingredients: ingredients

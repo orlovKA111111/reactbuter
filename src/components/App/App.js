@@ -3,16 +3,18 @@ import style from './App.module.css';
 import Header from "../AppHeader/AppHeader";
 import BurgerIngredients from "../BurgerIngredients/BurgerIngredients"
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor"
-import {getIngredients, RESET_INGREDIENTS_OBJECT} from "../../services/action/ingredients";
-import { useDispatch, useSelector } from 'react-redux';
+import {
+    getIngredients,
+    RESET_INGREDIENTS_OBJECT } from "../../services/action/ingredients";
+import {
+    useDispatch,
+    useSelector } from 'react-redux';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 import { RESET_ORDER_OBJECT } from "../../services/action/order";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
 import OrderDetails from "../OrderDetails/OrderDetails";
 import Modal from "../Modal/Modal";
-import { v4 as item } from 'uuid';
-
 
 export default function App () {
 
@@ -43,8 +45,8 @@ export default function App () {
             <main>
                 <div className={style.conteiner}>
                     <DndProvider backend={HTML5Backend}>
-                        <BurgerIngredients key={item.uuid} />
-                        <BurgerConstructor key={item.uuid}  />
+                        <BurgerIngredients key='1' />
+                        <BurgerConstructor key='2'  />
                     </DndProvider>
                 </div>
             </main>
