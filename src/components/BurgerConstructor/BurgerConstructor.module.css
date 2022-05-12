@@ -1,40 +1,40 @@
-.constructor-element{
-width: 100%;
- margin-right: 16px;
+.wrap {
+ width:600px;
+ height:600px;
 }
 
-.itemConstructor{
- margin-top: 16px;
- padding-right: 16px;
- align-content: center;
- align-items: center;
- display: flex;
- justify-content: flex-end;
+.list {
+ display:flex;
+ flex-direction:column;
+ align-items:flex-end;
+ gap:10px;
+ width:600px;
+ height:400px;
 }
-.itemConstructorTop {
- padding-right: 14px;
+.item {
+ width:100%;
+ display:flex;
+ justify-content:flex-end;
+ align-items:center;
 }
-.itemConstructorBottom {
- padding-right: 14px;
-}
-
-.itemConstructorBody{
- position: relative;
- height: 450px;
- overflow-y: scroll;
- overflow-x: hidden;
- scrollbar-width: thin;
+.main {
+ composes:list;
+ overflow:auto;
+ margin-bottom: 10px;
+ margin-top: 10px;
 }
 
-.buttonOrderCreate{
- margin-right: 40px;
- display: flex;
- padding: 10px;
+.footer {
+ display:flex;
+ flex-direction:row;
+ justify-content:flex-end;
+
 }
-.orderButtonPrice{
- margin-top: 40px;
- display: flex;
- justify-content: flex-end;
- align-content: center;
- align-items: center;
+.total {
+ display:flex;
+ align-items:center;
+ justify-content:center;
+}
+.height{
+ height: 100%;
 }

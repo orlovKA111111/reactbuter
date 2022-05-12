@@ -1,8 +1,15 @@
-import React from 'react'
-import style from'./ModalOverlay.module.css'
-import {ModalContenxt} from "../ModalWithUseEffect/ModalWithUseEffect";
+import React from 'react';
+import styles from './ModalOverlay.module.css';
+import PropTypes from "prop-types";
 
-export default function ModalOverlay() {
-    const {control} = React.useContext(ModalContenxt)
-    return  <div onClick={control.close} className={style.ModalOverlay} />
+ModalOverlay.propTypes ={
+    onClose: PropTypes.func
+}
+
+export default function ModalOverlay({onClose}) {
+
+    return (
+        <div className={styles.overlay} onClick={onClose}>
+        </div>
+    );
 }
