@@ -1,0 +1,39 @@
+main {
+    width:1240px;
+    margin:0 auto;
+    text-align:left;
+}
+.conteiner {
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-start;  
+}
+.menu {
+	width:320px;
+}
+.menu ul {
+	padding:0;
+}
+.menu li {
+	list-style-type: none;
+	line-height:64px;
+}
+.link {
+	text-decoration:none;
+	cursor:pointer;
+}
+.text {
+	opacity:0.4;
+}
+.buttons {
+	text-align:right;
+}
+.cancel {
+	border:none;
+	color:#4C4CFF;
+	background:transparent;
+	cursor:pointer;
+}
+.cancel:hover {
+    text-shadow:0 0 4px rgb(51,51,255);
+}

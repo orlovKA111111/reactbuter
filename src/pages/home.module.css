@@ -1,0 +1,11 @@
+main {
+    width:1240px;
+    margin:0 auto;
+    text-align:left;
+}
+
+.conteiner {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;  
+}

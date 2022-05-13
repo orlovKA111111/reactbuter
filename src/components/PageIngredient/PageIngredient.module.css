@@ -1,0 +1,23 @@
+.wrap {
+    text-align:center;
+}
+.header {
+    height:64px;
+    line-height:64px;
+}
+.structure {
+    display:inline-flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    width:540px;
+    justify-content:space-around
+}
+.component {
+    width:120px;
+}
+.component_name {
+    color:#8585AD;
+}
+.component_value {
+    color:#8585AD;
+}

@@ -1,59 +1,70 @@
 import React from 'react';
-import style from './App.module.css';
+import {
+    HomePage,
+    ProfilePage,
+    LoginPage,
+    RegisterPage,
+    ForgotPasswordPage,
+    ResetPasswordPage,
+    IngredientPage,
+    NotFound404
+} from '../../pages';
 import Header from "../AppHeader/AppHeader";
-import BurgerIngredients from "../BurgerIngredients/BurgerIngredients"
-import BurgerConstructor from "../BurgerConstructor/BurgerConstructor"
-import {
-    getIngredients,
-    RESET_INGREDIENTS_OBJECT } from "../../services/action/ingredients";
-import {
-    useDispatch,
-    useSelector } from 'react-redux';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { DndProvider } from 'react-dnd';
-import { RESET_ORDER_OBJECT } from "../../services/action/order";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
-import OrderDetails from "../OrderDetails/OrderDetails";
 import Modal from "../Modal/Modal";
+import {
+    Switch,
+    Route,
+    useLocation,
+    useHistory } from 'react-router-dom';
+import { ProtectedRoute } from '../protected-route';
+
 
 export default function App () {
 
-    const { itemObject } = useSelector(
-        state => state.ingredients
-    );
-    const { orderObject } = useSelector(
-        state => state.order
-    );
-    const dispatch = useDispatch();
+    const location = useLocation();
+    const history = useHistory();
+    const modal = (window.history.state != null) ? (window.history.state.modal || false) : false;
+    const background = location.state && location.state.background;
+    const returnFromModal = () => {
+        history.goBack();
+    };
 
-    const handleCloseModal = () => {
-        dispatch({type:RESET_INGREDIENTS_OBJECT});
-        dispatch({type:RESET_ORDER_OBJECT});
-    }
-
-    React.useEffect(
-        () => {
-            dispatch(getIngredients());
-        },
-        [dispatch]
-    );
-
-    const modalContent = (itemObject != null) ? (<IngredientDetails />) : ((orderObject != null) ? (<OrderDetails />) : null)
     return (
         <div>
             <Header />
-            <main>
-                <div className={style.conteiner}>
-                    <DndProvider backend={HTML5Backend}>
-                        <BurgerIngredients key='1' />
-                        <BurgerConstructor key='2'  />
-                    </DndProvider>
-                </div>
-            </main>
-            { (modalContent) && (
-                <Modal onClose={handleCloseModal}>
-                    {modalContent}
-                </Modal>
+            <Switch location={background || location}>
+                <Route path="/login" exact={true}>
+                    <LoginPage />
+                </Route>
+                <Route path="/register" exact={true}>
+                    <RegisterPage />
+                </Route>
+                <Route path="/forgot-password" exact={true}>
+                    <ForgotPasswordPage />
+                </Route>
+                <Route path="/reset-password" exact={true}>
+                    <ResetPasswordPage />
+                </Route>
+                <Route path="/" exact={true}>
+                    <HomePage />
+                </Route>
+                <Route path="/ingredients/:id" exact={true}>
+                    { (!modal) ? <IngredientPage /> : <HomePage modal={modal} /> }
+                </Route>
+                <ProtectedRoute path="/profile" exact={false}>
+                    <ProfilePage />
+                </ProtectedRoute>
+                <Route>
+                    <NotFound404 />
+                </Route>
+            </Switch>
+            {background && (
+                <Route path='/ingredients/:id' exact={true}>
+                    <Modal onClose={returnFromModal}>
+                        <IngredientDetails />
+                    </Modal>
+                </Route>
             )}
         </div>
     );
