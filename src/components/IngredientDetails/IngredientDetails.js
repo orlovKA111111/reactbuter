@@ -1,39 +1,44 @@
 import React from 'react';
 import style from './IngredientDetails.module.css'
-import { useSelector } from  'react-redux'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom';
+
 
 export default function IngredientDetails(){
-    const { itemObject } = useSelector(
+
+    const { id } = useParams();
+    const { items } = useSelector(
         state => state.ingredients
     );
 
-    const { image_large, name, calories, proteins, fat, carbohydrates } = itemObject;
+    const ingredient = (items.length > 0) ? items.find(i => i._id === id) : {image_large:'',name:'',calories:'',proteins:'',fat:'',carbohydrates:''};
+
     return (
             <div className={style.popup}>
                 <h2 className={style.popupHeader}>Детали иградиента</h2>
-                <img src={image_large} alt = 'img'/>
-                <span className={style.popupNameItem}>{name}</span>
+                <img src={ingredient.image_large} alt = 'img'/>
+                <span className={style.popupNameItem}>{ingredient.name}</span>
 
                 <div className={style.popupItem} >
                         <span>
                                 Калории,ккал
                             <br/>
-                            {calories}
+                            {ingredient.calories}
                         </span>
                     <span>
                                 Белки, г
                             <br/>
-                        {proteins}
+                        {ingredient.proteins}
                         </span>
                     <span>
                                 Жиры, г
                             <br/>
-                        {fat}
+                        {ingredient.fat}
                         </span>
                     <span>
                                 Углеводы г
                             <br/>
-                        {carbohydrates}
+                        {ingredient.carbohydrates}
                         </span>
                 </div>
             </div>

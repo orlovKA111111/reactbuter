@@ -1,13 +1,25 @@
 import React from 'react';
-import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+    Button,
+    CurrencyIcon
+} from "@ya.praktikum/react-developer-burger-ui-components";
 import style from "./BurgerConstructor.module.css"
-import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom';
+
+import {
+    useSelector,
+    useDispatch
+} from "react-redux";
+
 import { useDrop } from 'react-dnd';
+
 import {
     ADD_BUN_CONSTRUCTOR,
     ADD_INGREDIENT_CONSTRUCTOR,
     MOVE_ITEM_CONSTRUCTOR,
-    RESET_CONSTRUCTOR } from '../../services/action/constructor';
+    RESET_CONSTRUCTOR
+} from '../../services/action/constructor';
+
 import IngredientConstructor from "./IngredientConstructor";
 import { getOrderNumber } from "../../services/action/order";
 import { v4 as uuidKey } from 'uuid';
@@ -23,6 +35,8 @@ export default function BurgerConstructor() {
         state => state.construct
     );
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const moveItem = (item) => {
         const type = items.find(product => product._id === item.id).type;
         if (type === 'bun') {
@@ -47,16 +61,14 @@ export default function BurgerConstructor() {
     });
 
     const openOrderPopup = () => {
-        if (bun != null) {
-            const orderIngredient = ingredients.map((i)=>i.id)
-            console.log(orderIngredient)
-
-            const orderIngredients = [...orderIngredient, bun, bun];
-            console.log(orderIngredients)
-            dispatch(getOrderNumber(orderIngredients));
-            dispatch({type:RESET_CONSTRUCTOR});
+        if (localStorage.refreshToken) {
+            if (bun != null) {
+                const orderIngredients = [...ingredients.map(item => item.id), bun, bun];
+                dispatch(getOrderNumber(orderIngredients));
+                dispatch({type:RESET_CONSTRUCTOR});
+            }
         } else {
-            alert('Выберите булку и один инградиент')
+            history.push('/login');
         }
     }
 
