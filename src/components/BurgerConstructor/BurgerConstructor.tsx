@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-    Button,
-    CurrencyIcon
+    CurrencyIcon,
+    Button
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import style from "./BurgerConstructor.module.css"
+import style from './BurgerConstructor.module.css'
 import { useHistory } from 'react-router-dom';
 
 import {
@@ -24,37 +24,42 @@ import IngredientConstructor from "./IngredientConstructor";
 import { getOrderNumber } from "../../services/action/order";
 import { v4 as uuidKey } from 'uuid';
 
+import { IIngredients, IStateI, IStateC } from './types';
 
+const BurgerConstructor: React.FC = () =>  {
 
-export default function BurgerConstructor() {
-
-    const { items } = useSelector(
+    const { items } = useSelector<IStateI, { items: Array<IIngredients> | null }>(
         state => state.ingredients
     );
-    const { ingredients, bun } = useSelector(
+    const { ingredients, bun } = useSelector< IStateC, { ingredients:Array<{id:string, uuid:string}>|null, bun:string|null } >(
         state => state.construct
     );
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const moveItem = (item) => {
-        const type = items.find(product => product._id === item.id).type;
-        if (type === 'bun') {
-            dispatch({
-                type: ADD_BUN_CONSTRUCTOR,
-                ...item
-            });
-        } else {
-            dispatch({
-                type: ADD_INGREDIENT_CONSTRUCTOR,
-                ...item
-            });
+    const moveItem = (item:{id:string, uuid:string}) => {
+        if (items) {
+            const ingredient = items.find((product) => product._id === item.id);
+            if (ingredient) {
+                const type:string = ingredient.type;
+                if (type === 'bun') {
+                    dispatch({
+                        type: ADD_BUN_CONSTRUCTOR,
+                        ...item
+                    })
+                } else {
+                    dispatch({
+                        type: ADD_INGREDIENT_CONSTRUCTOR,
+                        ...item
+                    })
+                }
+            }
         }
     };
 
     const [, dropTarget] = useDrop({
         accept:'items',
-        drop(itemId) {
+        drop(itemId:{id:string, uuid:string}) {
             itemId.uuid = uuidKey();
             moveItem(itemId)
         },
@@ -63,7 +68,7 @@ export default function BurgerConstructor() {
     const openOrderPopup = () => {
         if (localStorage.refreshToken) {
             if (bun != null) {
-                const orderIngredients = [...ingredients.map(item => item.id), bun, bun];
+                const orderIngredients = (ingredients != null) ? [...ingredients.map(item => item.id), bun, bun] : [bun, bun];
                 dispatch(getOrderNumber(orderIngredients));
                 dispatch({type:RESET_CONSTRUCTOR});
             }
@@ -72,7 +77,7 @@ export default function BurgerConstructor() {
         }
     }
 
-    const moveItemSub = (item, monitor) => {
+    const moveItemSub = (item:{id:string,num:number,ref:any }, monitor:any) => {
         const dist = monitor.getClientOffset().y - item.ref.current.getBoundingClientRect().y;
         const newPos = item.num + Math.floor(dist/100);
         dispatch({
@@ -85,8 +90,7 @@ export default function BurgerConstructor() {
 
     const [, dropTargetSub] = useDrop({
         accept: 'itemsSub',
-        drop: (item, monitor) =>  {
-            item.uuid = uuidKey();
+        drop: (item:{id:string,num:number,ref:HTMLDivElement}, monitor:any) =>  {
             moveItemSub(item, monitor)
         },
     });
@@ -113,30 +117,27 @@ export default function BurgerConstructor() {
     }, [ingredients, bun, items]);
 
 
+    // @ts-ignore
     return (
         <section ref={dropTarget} className={style.wrap + ' mt-15'}>
             <div className={ style.height+' mt-4'}>
                     {(bun !== null) && <IngredientConstructor
                         id={bun}
-                        key={bun.uuid}
                         position='top'
-                        k={bun.uuid}
                     />}
                 <div className={style.main} ref={dropTargetSub}>
-                    {(ingredients.length > 0) && ingredients.map((product, index) =>
+                    {(ingredients != null) && ingredients.map((product, index) =>
                         <IngredientConstructor
                             id={product.id}
                             num={index}
-                            key={product.uuid}
                             k={product.uuid}
+                            key={product.uuid}
                         />
                     )}
                 </div>
                 {(bun !== null) && <IngredientConstructor
                     id={bun}
-                    key={bun.uuid}
                     position='bottom'
-                    k={bun.uuid}
                 />}
             </div>
             <div className={style.footer + ' mt-10'}>
@@ -152,3 +153,4 @@ export default function BurgerConstructor() {
     );
 }
 
+export default BurgerConstructor;

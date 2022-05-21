@@ -1,19 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import styles from './Modal.module.css';
 import ModalOverlay from '../ModalOverlay/ModalOverlay';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
+import { IModal } from './types';
 
-Modal.propTypes = {
-    onClose: PropTypes.func,
-    children: PropTypes.object
-};
- export default function Modal({onClose, children}) {
+const Modal: React.FC<IModal> = ({ onClose, children }) =>  {
     const modalRoot = document.getElementById("modals");
 
-    const onPressEsc = React.useCallback((e) => {
+    const onPressEsc = React.useCallback((e:any) => {
         if (e.key === 'Escape') onClose();
     }, [onClose]);
 
@@ -39,3 +35,4 @@ Modal.propTypes = {
         modalRoot
     );
 }
+export default Modal;

@@ -13,7 +13,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
 
-export default function  Header() {
+const Header: React.FC = () => {
 
     const { pathname } = useLocation();
     return (
@@ -33,3 +33,4 @@ export default function  Header() {
         </header>
     );
 }
+export default Header

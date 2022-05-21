@@ -5,12 +5,12 @@ import { forgotPassword } from '../services/action/auth';
 import styles from './auth.module.css';
 import { EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
-export function ForgotPasswordPage() {
+export const ForgotPasswordPage: React.FC = () =>  {
 
   const history = useHistory();
   const dispatch = useDispatch();
   const [form, setValue] = useState({ email: '' });
-  const onChange = e => {
+  const onChange = (e:any) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -18,7 +18,7 @@ export function ForgotPasswordPage() {
     history.push('/reset-password', {reset:true})
   };
 
-  const forgot = e => {
+  const forgot = (e:any) => {
     e.preventDefault();
     dispatch(forgotPassword(form, redirect));
   };

@@ -1,10 +1,10 @@
 import React from 'react';
-import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
+import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from'./BurgerIngredientsStyle.module.css'
 import IngredientsList from './IngredientsList'
 
 
-export default function BurgerIngredients() {
+const BurgerIngredients: React.FC = () => {
 
     const [current, setCurrent] = React.useState('bun');
 
@@ -14,20 +14,27 @@ export default function BurgerIngredients() {
     const mainRef = React.useRef(null);
 
 
-    const onScroll = () => {
+    const onScroll = () => {   if (ref && ref.current) {
         const distance = ref.current.getBoundingClientRect().y;
-        const bunDistance = Math.abs(distance - bunRef.current.getBoundingClientRect().y);
-        const sauceDistance = Math.abs(distance - sauceRef.current.getBoundingClientRect().y);
-        const mainDistance = Math.abs(distance - mainRef.current.getBoundingClientRect().y);
-        const minTabDistance = Math.min(bunDistance, sauceDistance, mainDistance);
-        const activeTab = (minTabDistance === sauceDistance ? 'sauce' : (minTabDistance === mainDistance ? 'main' : 'bun'));
-        setCurrent(activeTab);
+        if (bunRef && bunRef.current) {
+            const bunDistance = Math.abs(distance - bunRef.current.getBoundingClientRect().y);
+            if (sauceRef && sauceRef.current) {
+                const sauceDistance = Math.abs(distance - sauceRef.current.getBoundingClientRect().y);
+                if (mainRef && mainRef.current) {
+                    const mainDistance = Math.abs(distance - mainRef.current.getBoundingClientRect().y);
+                    const minTabDistance = Math.min(bunDistance, sauceDistance, mainDistance);
+                    const activeTab = (minTabDistance === sauceDistance ? 'sauce' : (minTabDistance === mainDistance ? 'main' : 'bun'));
+                    setCurrent(activeTab);
+                }
+            }
+        }
+    }
     };
 
-    const handleClick = (current) => {
-        if (current === 'bun') bunRef.current.scrollIntoView(true);
-        if (current === 'sauce') sauceRef.current.scrollIntoView(true);
-        if (current === 'main') mainRef.current.scrollIntoView(true);
+    const handleClick = (current:string) => {
+        if (current === 'bun') (bunRef && bunRef.current) && bunRef.current.scrollIntoView(true);
+        if (current === 'sauce') (sauceRef && sauceRef.current) && sauceRef.current.scrollIntoView(true);
+        if (current === 'main') (mainRef && mainRef.current) && mainRef.current.scrollIntoView(true);
     };
 
     return (
@@ -52,3 +59,4 @@ export default function BurgerIngredients() {
         </section>
     );
 }
+export default BurgerIngredients;

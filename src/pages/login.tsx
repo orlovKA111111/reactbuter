@@ -15,22 +15,40 @@ import {
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
-export function LoginPage() {
-  
-  const { logoutRequest } = useSelector(
-    state => state.auth
+interface IState {
+  auth:{
+    name:string,
+    email:string,
+    loginRequest:boolean,
+    loginFailed:boolean,
+    logoutRequest:boolean,
+    logoutFailed:boolean,
+    forgotRequest:boolean,
+    forgotFailed:boolean,
+    resetRequest:boolean,
+    resetFailed:boolean,
+    authRequest:boolean,
+    authFailed:boolean,
+    tokenRequest:boolean,
+    tokenFailed:boolean
+  }
+}
+
+export const LoginPage: React.FC = () => {
+
+  const { logoutRequest } = useSelector<IState,{logoutRequest:boolean}>(
+      state => state.auth
   );
   const dispatch = useDispatch();
-  const [form, setValue] = React.useState({ email: '', password: '' });
-  const onChange = e => {
+  const [form, setValue] = React.useState({ email:'', password:'' });
+  const onChange = (e:{target: HTMLInputElement}) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
-  const loginAuth = e => {
+  const loginAuth = (e:React.SyntheticEvent) => {
     e.preventDefault();
     dispatch(login(form));
   }
-  
   return (
     <div>
       {(localStorage.refreshToken && !logoutRequest) ? (<Redirect to='/' />) : (
