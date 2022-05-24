@@ -14,12 +14,12 @@ import { IIngredients, IStateI, IConstructorIngredient } from './types';
 
 
 export const IngredientConstructor: React.FC <IConstructorIngredient> = ({id, num, position, k}) =>  {
-    const ref = React.useRef(null);
+    const ref = React.useRef<HTMLDivElement>(null);
     const { items } = useSelector<IStateI, { items: Array<IIngredients> | null }>(
         state => state.ingredients
     );
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
     const [, drag] = useDrag({
         type: 'itemsSub',
         item: {id, num, ref},

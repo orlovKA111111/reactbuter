@@ -34,7 +34,7 @@ const BurgerConstructor: React.FC = () =>  {
     const { ingredients, bun } = useSelector< IStateC, { ingredients:Array<{id:string, uuid:string}>|null, bun:string|null } >(
         state => state.construct
     );
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
     const history = useHistory();
 
     const moveItem = (item:{id:string, uuid:string}) => {
@@ -116,8 +116,6 @@ const BurgerConstructor: React.FC = () =>  {
         return total;
     }, [ingredients, bun, items]);
 
-
-    // @ts-ignore
     return (
         <section ref={dropTarget} className={style.wrap + ' mt-15'}>
             <div className={ style.height+' mt-4'}>
@@ -145,7 +143,7 @@ const BurgerConstructor: React.FC = () =>  {
                       <span className="text text_type_digits-medium mr-4">{sumPrice}</span>
                         <CurrencyIcon type="primary" />
                     </span>
-                    <Button type="primary" size="medium" value="" onClick={openOrderPopup}>
+                    <Button type="primary" size="medium" onClick={openOrderPopup} >
                         Оформить заказ
                     </Button>
             </div>

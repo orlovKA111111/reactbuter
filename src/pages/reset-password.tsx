@@ -16,8 +16,8 @@ export const ResetPasswordPage: React.FC = () => {
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const history = useHistory<any>();
-  const dispatch = useDispatch();
-  const [form, setValue] = React.useState({ token: '', password: '' });
+  const dispatch = useDispatch<any>();
+  const [form, setValue] = React.useState<any>({ token: '', password: '' });
   const onChange = (e:{target: HTMLInputElement}) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
@@ -49,7 +49,7 @@ export const ResetPasswordPage: React.FC = () => {
             <h1 className="text text_type_main-medium">Восстановление пароля</h1>
             <div className="mt-6"><PasswordInput onChange={onChange} value={form.password} name={'password'} /></div>
             <div className="mt-6"><Input type={'text'} placeholder={'Введите код из письма'} onChange={onChange} icon={'CurrencyIcon'} value={form.token} name="token" error={false} ref={inputRef} onIconClick={onIconClick} errorText={'Ошибка'} size={'default'} /></div>
-            <div className="mt-6"><Button type="primary" size="medium">Сохранить</Button></div>
+            <div className="mt-6"><Button type="primary" size="medium" name='Сохранить' /></div>
           </form>
           <div className="text text_type_main-small text_color_inactive mt-4">Вспомнили пароль? <Link to='/login' className={styles.link}>Войти</Link></div>
         </div>

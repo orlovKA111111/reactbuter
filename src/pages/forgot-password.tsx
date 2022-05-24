@@ -7,9 +7,9 @@ import { EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-comp
 
 export const ForgotPasswordPage: React.FC = () =>  {
 
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const [form, setValue] = useState({ email: '' });
+  const history = useHistory<any>();
+  const dispatch = useDispatch<any>();
+  const [form, setValue] = useState<any>({ email: '' });
   const onChange = (e:any) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
@@ -31,7 +31,7 @@ export const ForgotPasswordPage: React.FC = () =>  {
         <form onSubmit={forgot}>
           <h1 className="text text_type_main-medium">Восстановление пароля</h1>
           <div className="mt-6"><EmailInput onChange={onChange} value={form.email} name="email" /></div>
-          <div className="mt-6"><Button type="primary" size="medium">Восстановить</Button></div>
+          <div className="mt-6"><Button type="primary" size="medium" name='Восстановить' /></div>
         </form>
         <div className="text text_type_main-small text_color_inactive mt-4">Вспомнили пароль? <Link to='/login' className={styles.link}>Войти</Link></div>
       </div>

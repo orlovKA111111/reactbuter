@@ -15,7 +15,7 @@ import { useDrag } from 'react-dnd';
 import { IIngredientItem, IStateC } from './types';
 
 const ItemIngredient: React.FC<IIngredientItem> = ({ product }) => {
-    const location = useLocation();
+    const location = useLocation<any>();
     const { ingredients, bun } = useSelector< IStateC, { ingredients:Array<{id:string, uuid:string}>|null, bun:string|null } >(
         state => state.construct
     );

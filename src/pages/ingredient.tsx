@@ -9,7 +9,7 @@ import { getIngredients } from '../services/action/ingredients';
 
 export const IngredientPage: React.FC = () =>  {
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const { id } = useParams<{id:string}>();
 
   React.useEffect(

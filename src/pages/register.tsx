@@ -8,9 +8,9 @@ import { EmailInput, Input, PasswordInput, Button } from '@ya.praktikum/react-de
 export const RegisterPage: FC = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const [form, setValue] = useState({ name: '', email: '', password: '' });
+  const history = useHistory<any>();
+  const dispatch = useDispatch<any>();
+  const [form, setValue] = useState<any>({ name: '', email: '', password: '' });
   const onChange = (e:{target: HTMLInputElement}) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
@@ -41,7 +41,11 @@ export const RegisterPage: FC = () => {
             <div className="mt-6"><Input type={'text'} placeholder={'Имя'} onChange={onChange} icon={'CurrencyIcon'} value={form.name} name="name" error={false} ref={inputRef} onIconClick={onIconClick} errorText={'Ошибка'} size={'default'} /></div>
             <div className="mt-6"><EmailInput onChange={onChange} value={form.email} name="email" /></div>
             <div className="mt-6"><PasswordInput onChange={onChange} value={form.password} name={'password'} /></div>
-            <div className="mt-6"><Button type="primary" size="medium">Зарегистрироваться</Button></div>
+            <div className="mt-6">
+              <Button type="primary" size="medium" name='Зарегистрироваться'>
+                Зарегистрироваться
+              </Button>
+            </div>
           </form>
           <div className="text text_type_main-small text_color_inactive mt-4">Уже зарегистрированы? <Link to='/login' className={styles.link}>Войти</Link></div>
         </div>
