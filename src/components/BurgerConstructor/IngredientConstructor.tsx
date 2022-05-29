@@ -1,5 +1,4 @@
 import React  from 'react';
-import PropTypes  from 'prop-types';
 import style from './BurgerConstructor.module.css';
 import {
     ConstructorElement,
@@ -9,21 +8,18 @@ import {
     useDispatch,
     useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
+import { IIngredients, IStateI, IConstructorIngredient } from './types';
 
-IngredientConstructor.propTypes = {
-    id: PropTypes.string,
-    num: PropTypes.number,
-    position: PropTypes.string,
-    k: PropTypes.string
-};
 
-export default function IngredientConstructor ({id, num, position, k}) {
-    const ref = React.useRef(null);
-    const { items } = useSelector(
+
+
+export const IngredientConstructor: React.FC <IConstructorIngredient> = ({id, num, position, k}) =>  {
+    const ref = React.useRef<HTMLDivElement>(null);
+    const { items } = useSelector<IStateI, { items: Array<IIngredients> | null }>(
         state => state.ingredients
     );
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
     const [, drag] = useDrag({
         type: 'itemsSub',
         item: {id, num, ref},
@@ -32,15 +28,20 @@ export default function IngredientConstructor ({id, num, position, k}) {
     const deleteIngredient = () => {
         dispatch({type:DELETE_ITEM_CONSTRUCTOR, num:num});
     }
-    let product = items.find(item => item._id === id);
+    const product = (items != null) && items.find(item => item._id === id);
+    const price:number = (product && product.price) ? product.price : 0;
+    const image = (product && product.image) ? product.image : '';
+    const name:string = (product && product.name) ? product.name + ((position === 'top') ? ' (верх)' : ' (низ)') : '';
+
     if (position) {
+
         return (
             <div className={style.item} ref={ref} key={k}>
             <ConstructorElement
-                text={product.name + ((position === 'top') ? ' (верх)' : ' (низ)')}
+                text={name + ((position === 'top') ? ' (верх)' : ' (низ)')}
                 isLocked={true}
-                price={product.price}
-                thumbnail={product.image}
+                price={price}
+                thumbnail={image}
                 type={position}
             />
             </div>
@@ -50,12 +51,13 @@ export default function IngredientConstructor ({id, num, position, k}) {
             <div className={style.item} ref={ref} key={k}>
                 <DragIcon type="primary" />
                 <ConstructorElement
-                    text={product.name}
-                    price={product.price}
-                    thumbnail={product.image}
+                    text={name}
+                    price={price}
+                    thumbnail={image}
                     handleClose={deleteIngredient}
                 />
             </div>
         )
     }
 };
+export default IngredientConstructor;

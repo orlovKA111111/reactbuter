@@ -13,9 +13,9 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
 
-export default function  Header() {
+const Header: React.FC = () => {
 
-    const { pathname } = useLocation();
+    const { pathname } = useLocation<any>();
     return (
         <header className="mb-10">
             <div className={style.conteiner}>
@@ -33,3 +33,4 @@ export default function  Header() {
         </header>
     );
 }
+export default Header

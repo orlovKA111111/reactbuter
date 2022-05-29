@@ -1,4 +1,4 @@
-import React from 'react';
+import React   from 'react';
 import {
     HomePage,
     ProfilePage,
@@ -20,11 +20,10 @@ import {
 import { ProtectedRoute } from '../protected-route';
 
 
-export default function App () {
+export const App: React.FC = () => {
 
-    const location = useLocation();
-    const history = useHistory();
-    const modal = (window.history.state != null) ? (window.history.state.modal || false) : false;
+    const location = useLocation<any>();
+    const history = useHistory<any>();
     const background = location.state && location.state.background;
     const returnFromModal = () => {
         history.goBack();
@@ -50,7 +49,7 @@ export default function App () {
                     <HomePage />
                 </Route>
                 <Route path="/ingredients/:id" exact={true}>
-                    { (!modal) ? <IngredientPage /> : <HomePage modal={modal} /> }
+                    { (!background) ? <IngredientPage /> : <HomePage /> }
                 </Route>
                 <ProtectedRoute path="/profile" exact={false}>
                     <ProfilePage />
@@ -69,5 +68,5 @@ export default function App () {
         </div>
     );
 }
-
+export default App;
 

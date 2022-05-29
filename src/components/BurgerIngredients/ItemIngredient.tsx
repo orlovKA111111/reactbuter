@@ -11,16 +11,12 @@ import {
 
 import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
-import PropTypes from "prop-types";
 
+import { IIngredientItem, IStateC } from './types';
 
-ItemIngredient.propTypes = {
-    product: PropTypes.object,
-};
-
-export default function ItemIngredient ({ product }) {
-    const location = useLocation();
-    const { ingredients, bun } = useSelector(
+const ItemIngredient: React.FC<IIngredientItem> = ({ product }) => {
+    const location = useLocation<any>();
+    const { ingredients, bun } = useSelector< IStateC, { ingredients:Array<{id:string, uuid:string}>|null, bun:string|null } >(
         state => state.construct
     );
 
@@ -38,7 +34,9 @@ export default function ItemIngredient ({ product }) {
             if (product.type === 'bun') {
                 if (bun === product._id) count = 2;
             } else {
-                ingredients.map((item) => item.id === product._id? count = count+1:'' );
+                (ingredients != null) && ingredients.forEach(function(item:{id:string, uuid:string}) {
+                    if (item.id === product._id) count = count+1;
+                })
             }
             return count;
         },
@@ -57,3 +55,4 @@ export default function ItemIngredient ({ product }) {
     )
 };
 
+export default ItemIngredient;
