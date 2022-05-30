@@ -82,7 +82,7 @@ export const getAuthRequest = async () => {
         credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${getCookie('token')}`
+            Authorization: `Bearer ${getCookie('token')}`,
         },
         redirect: 'follow',
         referrerPolicy: 'no-referrer'

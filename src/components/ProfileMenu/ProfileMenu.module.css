@@ -1,0 +1,17 @@
+.menu {
+  padding:0;
+}
+.item {
+  list-style-type: none;
+  line-height:64px;
+}
+.link {
+  text-decoration:none;
+  cursor:pointer;
+}
+.active_link {
+  color:#fff !important;
+}
+.link:hover {
+  color:#fff !important;
+}

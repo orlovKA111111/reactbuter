@@ -21,7 +21,7 @@ const Modal: React.FC<IModal> = ({ onClose, children }) =>  {
     }, [onPressEsc]);
 
     return ReactDOM.createPortal(
-        <div className={(children != null) ? styles.wrap_active : styles.wrap}>
+        <div className={(children !== null) ? styles.wrap_active : styles.wrap}>
             <ModalOverlay onClose={onClose} />
             <div className={styles.modal}>
                 <div className={styles.close} onClick={onClose} >

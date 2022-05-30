@@ -2,13 +2,18 @@ import React   from 'react';
 import {
     HomePage,
     ProfilePage,
+    ProfileOrderPage,
+    ProfileOrdersPage,
     LoginPage,
     RegisterPage,
     ForgotPasswordPage,
     ResetPasswordPage,
     IngredientPage,
+    FeedPage,
+    OrderPage,
     NotFound404
 } from '../../pages';
+
 import Header from "../AppHeader/AppHeader";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
 import Modal from "../Modal/Modal";
@@ -18,6 +23,7 @@ import {
     useLocation,
     useHistory } from 'react-router-dom';
 import { ProtectedRoute } from '../protected-route';
+import FeedDetails from "../FeedDetails/FeedDetails";
 
 
 export const App: React.FC = () => {
@@ -45,15 +51,27 @@ export const App: React.FC = () => {
                 <Route path="/reset-password" exact={true}>
                     <ResetPasswordPage />
                 </Route>
+                <Route path="/feed/:id" exact={true}>
+                    { (!background) ? <OrderPage /> : <FeedPage /> }
+                </Route>
+                <Route path="/feed" exact={true}>
+                    <FeedPage />
+                </Route>
                 <Route path="/" exact={true}>
                     <HomePage />
                 </Route>
                 <Route path="/ingredients/:id" exact={true}>
                     { (!background) ? <IngredientPage /> : <HomePage /> }
                 </Route>
-                <ProtectedRoute path="/profile" exact={false}>
+                <ProtectedRoute path="/profile" exact={true}>
                     <ProfilePage />
                 </ProtectedRoute>
+                <ProtectedRoute path="/profile/orders" exact={true}>
+                    <ProfileOrdersPage />
+                </ProtectedRoute>
+                <ProtectedRoute  path='/profile/orders/:id' exact={true}>
+                    { (!background) ? <ProfileOrderPage /> : <ProfileOrdersPage /> }
+                </ProtectedRoute >
                 <Route>
                     <NotFound404 />
                 </Route>
@@ -62,6 +80,20 @@ export const App: React.FC = () => {
                 <Route path='/ingredients/:id' exact={true}>
                     <Modal onClose={returnFromModal}>
                         <IngredientDetails />
+                    </Modal>
+                </Route>
+            )}
+            {background && (
+                <Route path='/feed/:id' exact={true}>
+                    <Modal onClose={returnFromModal}>
+                        <FeedDetails isProfile={false} />
+                    </Modal>
+                </Route>
+            )}
+            {background && (
+                <Route path='/profile/orders/:id' exact={true}>
+                    <Modal onClose={returnFromModal}>
+                        <FeedDetails isProfile={true} />
                     </Modal>
                 </Route>
             )}
