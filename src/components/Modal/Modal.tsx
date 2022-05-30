@@ -20,7 +20,7 @@ const Modal: React.FC<IModal> = ({ onClose, children }) =>  {
         };
     }, [onPressEsc]);
 
-    return ReactDOM.createPortal(
+    return ( modalRoot && ReactDOM.createPortal(
         <div className={(children !== null) ? styles.wrap_active : styles.wrap}>
             <ModalOverlay onClose={onClose} />
             <div className={styles.modal}>
@@ -33,6 +33,6 @@ const Modal: React.FC<IModal> = ({ onClose, children }) =>  {
         </div>
         ,
         modalRoot
-    );
+    ));
 }
 export default Modal;

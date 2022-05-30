@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { forgotPassword } from '../services/action/auth';
 import styles from './auth.module.css';
 import { EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import {useAppDispatch} from "../services/hooks";
 
 export const ForgotPasswordPage: React.FC = () =>  {
 
   const history = useHistory();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [form, setValue] = useState({ email: '' });
   const onChange = (e:any) => {
     setValue({ ...form, [e.target.name]: e.target.value });

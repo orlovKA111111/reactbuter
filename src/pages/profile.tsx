@@ -1,35 +1,37 @@
-import React, { useState, useRef, useEffect, FC, SyntheticEvent } from 'react';
-import { useHistory, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAuth, updateAuth, logout } from '../services/action/auth';
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  FC,
+  SyntheticEvent
+} from 'react';
+import {
+  useHistory,
+  Link
+} from 'react-router-dom';
+import {
+  getAuth,
+  updateAuth,
+  logout
+} from '../services/action/auth';
 import styles from './profile.module.css';
-import { Input, EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-
-interface IState {
-  auth:{
-    name:string,
-    email:string,
-    loginRequest:boolean,
-    loginFailed:boolean,
-    logoutRequest:boolean,
-    logoutFailed:boolean,
-    forgotRequest:boolean,
-    forgotFailed:boolean,
-    resetRequest:boolean,
-    resetFailed:boolean,
-    authRequest:boolean,
-    authFailed:boolean,
-    tokenRequest:boolean,
-    tokenFailed:boolean
-  }
-}
+import {
+  Input,
+  EmailInput,
+  PasswordInput,
+  Button
+} from '@ya.praktikum/react-developer-burger-ui-components';
+import {
+  useAppDispatch,
+  useAppSelector
+} from "../services/hooks";
 
 export const ProfilePage: FC = () => {
 
   const history = useHistory();
   const inputRef = useRef<HTMLInputElement>(null);
-  const dispatch = useDispatch();
-  const { name, email } = useSelector<IState,{name:string, email:string}>(
+  const dispatch = useAppDispatch();
+  const { name, email } = useAppSelector(
       state => state.auth
   );
 

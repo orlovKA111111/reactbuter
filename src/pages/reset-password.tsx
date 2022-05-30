@@ -3,7 +3,6 @@ import {
   useHistory,
   Link
 } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { resetPassword } from '../services/action/auth';
 import styles from './auth.module.css';
 import {
@@ -11,12 +10,13 @@ import {
   PasswordInput,
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
+import {useAppDispatch} from "../services/hooks";
 
 export const ResetPasswordPage: React.FC = () => {
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const history = useHistory<any>();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [form, setValue] = React.useState({ token: '', password: '' });
   const onChange = (e:{target: HTMLInputElement}) => {
     setValue({ ...form, [e.target.name]: e.target.value });

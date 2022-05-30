@@ -9,17 +9,16 @@ import {
     CurrencyIcon
 } from '@ya.praktikum/react-developer-burger-ui-components';
 
-import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 
-import { IIngredientItem, IStateC } from './types';
+import { IIngredientItem } from './types';
+import { useAppSelector } from "../../services/hooks";
 
 const ItemIngredient: React.FC<IIngredientItem> = ({ product }) => {
     const location = useLocation();
-    const { ingredients, bun } = useSelector< IStateC, { ingredients:Array<{id:string, uuid:string}>|null, bun:string|null } >(
+    const { ingredients, bun } = useAppSelector(
         state => state.construct
     );
-
 
     const [{ opacity }, ref] = useDrag({
         type: 'items',

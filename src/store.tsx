@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { wsActions } from './services/actions/wsActions';
-import { wsActionsUser } from './services/actions/wsActionsUser';
+import { wsActions } from './services/action/wsActions';
+import { wsActionsUser } from './services/action/wsActionsUser';
 import { socketMiddleware } from './services/middleware';
 import { rootReducer } from './services/reducers';
-import { WS_URL_ALL, WS_URL_OWNER } from './utils/constants';
+import { WS_URL_ALL, WS_URL_OWNER } from './utlls/constants';
 
 declare global {
   interface Window {

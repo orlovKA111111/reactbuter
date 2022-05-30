@@ -1,12 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import style from "./BurgerIngredientsStyle.module.css";
 import ItemIngredient from "./ItemIngredient";
 
-import { IIngredients, IStateI, IIngredientsList } from './types';
+import { IIngredientsList } from './types';
+import { useAppSelector } from "../../services/hooks";
 
 const IngredientsList = React.forwardRef<HTMLDivElement, IIngredientsList>(({ name, ename }, ref ) => {
-    const { items } = useSelector< IStateI, { items: Array<IIngredients> | null }>(
+    const { items } = useAppSelector(
         state => state.ingredients
     );
 
@@ -20,4 +20,4 @@ const IngredientsList = React.forwardRef<HTMLDivElement, IIngredientsList>(({ na
     )
 });
 
- export default IngredientsList
+export default IngredientsList;

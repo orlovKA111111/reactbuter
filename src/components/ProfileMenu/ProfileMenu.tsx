@@ -1,6 +1,6 @@
 import React, { SyntheticEvent } from 'react';
 import { useHistory, NavLink } from 'react-router-dom';
-import { useDispatch } from '../../services/hooks';
+import { useAppDispatch } from '../../services/hooks';
 import { logout } from '../../services/action/auth';
 import styles from './ProfileMenu.module.css';
 
@@ -8,7 +8,7 @@ import styles from './ProfileMenu.module.css';
 function ProfileMenu() {
   
   const history = useHistory();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const redirect = () => {
     history.push('/login')

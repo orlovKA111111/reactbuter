@@ -1,12 +1,12 @@
 import React, { FC, useMemo } from 'react';
-import { useSelector } from '../../services/hooks';
+import { useAppSelector } from '../../services/hooks';
 import { TOrder } from '../../services/types';
 import styles from './Feed.module.css';
 
 
 const FeedInfo: FC = () => {
   
-  const { data } = useSelector(
+  const { data } = useAppSelector(
     state => state.wsr
   );
 

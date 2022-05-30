@@ -1,11 +1,11 @@
 import React from 'react';
-import { useDispatch } from '../services/hooks';
+import { useAppDispatch } from '../services/hooks';
 import FeedDetails from '../components/FeedDetails/FeedDetails';
 
 
 export const OrderPage: React.FC = () => {
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   React.useEffect(() => {
     dispatch({ type: 'WS_CONNECTION_START' });
     return () => {

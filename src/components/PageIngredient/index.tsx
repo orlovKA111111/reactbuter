@@ -1,12 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import styles from './PageIngredient.module.css';
-
-import { IStateI, IIngredients, IIngredient } from '../BurgerIngredients/types';
+import { IIngredient } from '../BurgerIngredients/types';
+import { useAppSelector } from "../../services/hooks";
 
 const Ingredient: React.FC<IIngredient> = ({ product }) =>  {
 
-    const { items } = useSelector< IStateI, { items: Array<IIngredients> | null }>(
+    const { items } = useAppSelector(
         state => state.ingredients
     );
     const ingredient = (items != null && items.length > 0) ? items.find(i => i._id === product) : {image_large:'',name:'',calories:0,proteins:0,fat:0,carbohydrates:0};

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useSelector } from '../../services/hooks';
+import { useAppSelector } from '../../services/hooks';
 import { useParams } from 'react-router-dom';
 import { getOrderDate } from '../../utlls/date';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -13,10 +13,10 @@ type TFeedDetails = {
 
 const FeedDetails: FC<TFeedDetails> = ({ isProfile }) => {
   const { id } = useParams<{id:string}>();
-  const { orders } = useSelector(
+  const { orders } = useAppSelector(
     state => (isProfile) ? state.wsru.data : state.wsr.data
   );
-  const { items } = useSelector(
+  const { items } = useAppSelector(
     state => state.ingredients
   )
   const order = (orders.length > 0) && orders.find((item:TOrder) => item.number == id);

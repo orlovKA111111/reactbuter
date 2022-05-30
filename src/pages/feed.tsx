@@ -1,18 +1,21 @@
-import React, { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from '../services/hooks';
+import React from 'react';
+import {
+  useAppDispatch,
+  useAppSelector
+} from '../services/hooks';
 import FeedItem from '../components/Feed/FeedItem';
 import FeedInfo from '../components/Feed/FeedInfo';
 import { TOrder } from '../services/types';
 import styles from './home.module.css';
 
 
-export const FeedPage: FC = () => {
-  const dispatch = useDispatch();
-  const { orders } = useSelector(
+export const FeedPage: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const { orders } = useAppSelector(
     state => state.wsr.data
   );
   
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch({ type: 'WS_CONNECTION_START' });
     return () => {
       dispatch({ type: 'WS_CONNECTION_CLOSED' });

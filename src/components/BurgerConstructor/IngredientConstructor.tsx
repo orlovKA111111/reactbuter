@@ -4,22 +4,24 @@ import {
     ConstructorElement,
     DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DELETE_ITEM_CONSTRUCTOR } from '../../services/action/constructor';
-import {
-    useDispatch,
-    useSelector } from 'react-redux';
+
 import { useDrag } from 'react-dnd';
-import { IIngredients, IStateI, IConstructorIngredient } from './types';
+import { IConstructorIngredient } from './types';
+import {
+    useAppDispatch,
+    useAppSelector
+} from "../../services/hooks";
 
 
 
 
 export const IngredientConstructor: React.FC <IConstructorIngredient> = ({id, num, position, k}) =>  {
     const ref = React.useRef(null);
-    const { items } = useSelector<IStateI, { items: Array<IIngredients> | null }>(
+    const { items } = useAppSelector(
         state => state.ingredients
     );
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const [, drag] = useDrag({
         type: 'itemsSub',
         item: {id, num, ref},

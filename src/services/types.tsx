@@ -2,12 +2,12 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { Action, ActionCreator, Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { store } from '../store';
-import { TAuthActions } from './actions/auth';
-import { TOrdersActions } from './actions/order';
-import { TIngredientsActions } from './actions/ingredients';
-import { TConstructorActions } from './actions/constructor';
-import { TWSActions } from './actions/wsActions';
-import { TWSActionsUser } from './actions/wsActionsUser';
+import { TAuthActions } from './action/auth';
+import { TOrdersActions } from './action/order';
+import { TIngredientsActions } from './action/ingredients';
+import { TConstructorActions } from './action/constructor';
+import { TWSActions } from './action/wsActions';
+import { TWSActionsUser } from './action/wsActionsUser';
 
 
 export type TWsActions = {

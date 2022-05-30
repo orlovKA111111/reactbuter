@@ -1,24 +1,26 @@
-import React, { useEffect, FC } from 'react';
-import { useDispatch, useSelector } from '../services/hooks';
+import React from 'react';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../services/hooks';
 import ProfileMenu from '../components/ProfileMenu/ProfileMenu';
 import FeedItem from '../components/Feed/FeedItem';
 import styles from './profile.module.css';
+import { TOrder } from '../services/types';
 
 
-export const ProfileOrdersPage: FC = () => {
-
-  const dispatch = useDispatch();
+export const ProfileOrdersPage: React.FC = () => {
+  const { orders } = useAppSelector(
+      state => state.wsru.data
+  );
+  const dispatch = useAppDispatch();
   
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch({ type: 'WS_CONNECTION_START_USER' });
     return () => {
       dispatch({ type: 'WS_CONNECTION_CLOSED_USER' });
     };
   }, [dispatch]);
-
-  const { orders } = useSelector(
-    state => state.wsru.data
-  );
 
   return (
     <div>
@@ -29,7 +31,7 @@ export const ProfileOrdersPage: FC = () => {
             <p className={styles.text + ' text text_type_main-default text_color_inactive mt-20'}>В этом разделе вы можете просмотреть свою историю заказов</p>
           </section>
           <section className={styles.orders}>          
-            {orders && orders.map((order : any, index : number) => <FeedItem key={order._id} order={order} />)}
+            {orders && orders.map((order : TOrder, index : number) => <FeedItem key={order._id} order={order} />)}
           </section>
         </div>
       </main>

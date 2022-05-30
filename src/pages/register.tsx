@@ -1,15 +1,28 @@
-import React, { useState, useRef, FC, SyntheticEvent } from 'react';
-import { useHistory, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React, {
+  useState,
+  useRef,
+  FC,
+  SyntheticEvent
+} from 'react';
+import {
+  useHistory,
+  Link
+} from 'react-router-dom';
 import { register } from '../services/action/auth';
 import styles from './auth.module.css';
-import { EmailInput, Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import {
+  EmailInput,
+  Input,
+  PasswordInput,
+  Button
+} from '@ya.praktikum/react-developer-burger-ui-components';
+import {useAppDispatch} from "../services/hooks";
 
 export const RegisterPage: FC = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const history = useHistory();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [form, setValue] = useState({ name: '', email: '', password: '' });
   const onChange = (e:{target: HTMLInputElement}) => {
     setValue({ ...form, [e.target.name]: e.target.value });

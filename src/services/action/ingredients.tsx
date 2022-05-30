@@ -43,7 +43,7 @@ export type TIngredientsActions =
   | IGetItemsSuccess
   | IGetItemsFailed;
 
-export const getItems : AppThunk = () => {
+export const getIngredients : AppThunk = () => {
   return function(dispatch : AppDispatch) {
     dispatch({
       type: GET_ITEMS_REQUEST

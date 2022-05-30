@@ -3,10 +3,6 @@ import {
   Link,
   Redirect
 } from 'react-router-dom';
-import {
-  useDispatch,
-  useSelector
-} from 'react-redux';
 import { login } from '../services/action/auth';
 import styles from './auth.module.css';
 import {
@@ -14,32 +10,17 @@ import {
   PasswordInput,
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
-
-interface IState {
-  auth:{
-    name:string,
-    email:string,
-    loginRequest:boolean,
-    loginFailed:boolean,
-    logoutRequest:boolean,
-    logoutFailed:boolean,
-    forgotRequest:boolean,
-    forgotFailed:boolean,
-    resetRequest:boolean,
-    resetFailed:boolean,
-    authRequest:boolean,
-    authFailed:boolean,
-    tokenRequest:boolean,
-    tokenFailed:boolean
-  }
-}
+import {
+  useAppDispatch,
+  useAppSelector
+} from "../services/hooks";
 
 export const LoginPage: React.FC = () => {
 
-  const { logoutRequest } = useSelector<IState,{logoutRequest:boolean}>(
+  const { logoutRequest } = useAppSelector(
       state => state.auth
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [form, setValue] = React.useState({ email:'', password:'' });
   const onChange = (e:{target: HTMLInputElement}) => {
     setValue({ ...form, [e.target.name]: e.target.value });

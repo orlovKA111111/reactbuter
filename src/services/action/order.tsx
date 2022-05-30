@@ -35,7 +35,7 @@ export type TOrdersActions =
   | IResetOrderFailed;
 
 
-export const getOrder : AppThunk = (ingredients : Array<string>)  => {
+export const getOrderNumber : AppThunk = (ingredients : Array<string>)  => {
   return function(dispatch : AppDispatch) {
     dispatch({
       type: GET_ORDER_REQUEST

@@ -1,17 +1,12 @@
 import React from 'react';
 import style from './IngredientDetails.module.css'
-import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
-
-import {
-    IStateI,
-    IIngredients
-} from '../BurgerIngredients/types';
+import {useAppSelector} from "../../services/hooks";
 
 const IngredientDetails: React.FC = () =>{
 
     const { id } = useParams<{id:string}>();
-    const { items } = useSelector< IStateI, { items: Array<IIngredients> | null }>(
+    const { items } = useAppSelector(
         state => state.ingredients
     );
 

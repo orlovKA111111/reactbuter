@@ -8,10 +8,10 @@ const BurgerIngredients: React.FC = () => {
 
     const [current, setCurrent] = React.useState('bun');
 
-    const ref = React.useRef(null);
-    const bunRef = React.useRef(null);
-    const sauceRef = React.useRef(null);
-    const mainRef = React.useRef(null);
+    const ref = React.useRef<HTMLDivElement>(null);
+    const bunRef = React.useRef<HTMLDivElement>(null);
+    const sauceRef = React.useRef<HTMLDivElement>(null);
+    const mainRef = React.useRef<HTMLDivElement>(null);
 
 
     const onScroll = () => {   if (ref && ref.current) {
