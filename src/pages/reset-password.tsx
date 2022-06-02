@@ -17,7 +17,7 @@ export const ResetPasswordPage: React.FC = () => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const history = useHistory<any>();
   const dispatch = useAppDispatch();
-  const [form, setValue] = React.useState({ token: '', password: '' });
+  const [form, setValue] = React.useState<any>({ token: '', password: '' });
   const onChange = (e:{target: HTMLInputElement}) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };

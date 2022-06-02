@@ -7,7 +7,7 @@ import styles from './ProfileMenu.module.css';
 
 function ProfileMenu() {
   
-  const history = useHistory();
+  const history = useHistory<any>();
   const dispatch = useAppDispatch();
 
   const redirect = () => {

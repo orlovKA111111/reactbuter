@@ -6,7 +6,7 @@ import IngredientsList from './IngredientsList'
 
 const BurgerIngredients: React.FC = () => {
 
-    const [current, setCurrent] = React.useState('bun');
+    const [current, setCurrent] = React.useState<any>('bun');
 
     const ref = React.useRef<HTMLDivElement>(null);
     const bunRef = React.useRef<HTMLDivElement>(null);

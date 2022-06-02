@@ -1,4 +1,6 @@
+import * as React from "react";
+
 export interface IModal {
   onClose:() => void;
-  children: any;
+  children?: React.ReactNode | undefined;
 };

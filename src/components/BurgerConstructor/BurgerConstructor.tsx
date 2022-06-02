@@ -33,7 +33,7 @@ const BurgerConstructor: React.FC = () =>  {
         state => state.construct
     );
     const dispatch = useAppDispatch();
-    const history = useHistory();
+    const history = useHistory<any>();
 
     const moveItem = (item:{id:string, uuid:string}) => {
         if (items) {

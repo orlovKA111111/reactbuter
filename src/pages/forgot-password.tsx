@@ -7,9 +7,9 @@ import {useAppDispatch} from "../services/hooks";
 
 export const ForgotPasswordPage: React.FC = () =>  {
 
-  const history = useHistory();
+  const history = useHistory<any>();
   const dispatch = useAppDispatch();
-  const [form, setValue] = useState({ email: '' });
+  const [form, setValue] = useState<any>({ email: '' });
   const onChange = (e:any) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };

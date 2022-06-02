@@ -7,6 +7,7 @@ import FeedItem from '../components/Feed/FeedItem';
 import FeedInfo from '../components/Feed/FeedInfo';
 import { TOrder } from '../services/types';
 import styles from './home.module.css';
+import {WS_CONNECTION_CLOSED, WS_CONNECTION_START} from "../services/action/wsActions";
 
 
 export const FeedPage: React.FC = () => {
@@ -16,9 +17,9 @@ export const FeedPage: React.FC = () => {
   );
   
   React.useEffect(() => {
-    dispatch({ type: 'WS_CONNECTION_START' });
+    dispatch({ type: WS_CONNECTION_START });
     return () => {
-      dispatch({ type: 'WS_CONNECTION_CLOSED' });
+      dispatch({ type: WS_CONNECTION_CLOSED });
     };
   }, [dispatch]);
 

@@ -21,9 +21,9 @@ import {useAppDispatch} from "../services/hooks";
 export const RegisterPage: FC = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const history = useHistory();
+  const history = useHistory<any>();
   const dispatch = useAppDispatch();
-  const [form, setValue] = useState({ name: '', email: '', password: '' });
+  const [form, setValue] = useState<any>({ name: '', email: '', password: '' });
   const onChange = (e:{target: HTMLInputElement}) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };

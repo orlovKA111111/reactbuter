@@ -15,7 +15,7 @@ import {
 
 const Header: React.FC = () => {
 
-    const { pathname } = useLocation();
+    const { pathname } = useLocation<any>();
     return (
         <header className="mb-10">
             <div className={style.conteiner}>

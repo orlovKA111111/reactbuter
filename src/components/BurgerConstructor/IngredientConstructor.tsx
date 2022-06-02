@@ -16,7 +16,7 @@ import {
 
 
 export const IngredientConstructor: React.FC <IConstructorIngredient> = ({id, num, position, k}) =>  {
-    const ref = React.useRef(null);
+    const ref = React.useRef<HTMLDivElement>(null);
     const { items } = useAppSelector(
         state => state.ingredients
     );

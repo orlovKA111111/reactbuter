@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './IngredientDetails.module.css'
 import { useParams } from 'react-router-dom';
-import {useAppSelector} from "../../services/hooks";
+import { useAppSelector } from "../../services/hooks";
 
 const IngredientDetails: React.FC = () =>{
 

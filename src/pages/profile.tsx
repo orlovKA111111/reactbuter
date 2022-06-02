@@ -28,14 +28,14 @@ import {
 
 export const ProfilePage: FC = () => {
 
-  const history = useHistory();
+  const history = useHistory<any>();
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
   const { name, email } = useAppSelector(
       state => state.auth
   );
 
-  const [form, setValue] = useState({ name:name, email:email, password: '' });
+  const [form, setValue] = useState<any>({ name:name, email:email, password: '' });
   const onChange = (e:{target: HTMLInputElement}) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };

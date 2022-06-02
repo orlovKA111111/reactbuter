@@ -7,6 +7,7 @@ import ProfileMenu from '../components/ProfileMenu/ProfileMenu';
 import FeedItem from '../components/Feed/FeedItem';
 import styles from './profile.module.css';
 import { TOrder } from '../services/types';
+import {WS_CONNECTION_CLOSED_USER, WS_CONNECTION_START_USER} from "../services/action/wsActionsUser";
 
 
 export const ProfileOrdersPage: React.FC = () => {
@@ -16,9 +17,9 @@ export const ProfileOrdersPage: React.FC = () => {
   const dispatch = useAppDispatch();
   
   React.useEffect(() => {
-    dispatch({ type: 'WS_CONNECTION_START_USER' });
+    dispatch({ type: WS_CONNECTION_START_USER });
     return () => {
-      dispatch({ type: 'WS_CONNECTION_CLOSED_USER' });
+      dispatch({ type: WS_CONNECTION_CLOSED_USER });
     };
   }, [dispatch]);
 

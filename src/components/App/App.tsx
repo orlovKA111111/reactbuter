@@ -13,7 +13,6 @@ import {
     OrderPage,
     NotFound404
 } from '../../pages';
-
 import Header from "../AppHeader/AppHeader";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
 import Modal from "../Modal/Modal";
@@ -24,6 +23,8 @@ import {
     useHistory } from 'react-router-dom';
 import { ProtectedRoute } from '../protected-route';
 import FeedDetails from "../FeedDetails/FeedDetails";
+import { useAppDispatch } from "../../services/hooks";
+import { getIngredients } from "../../services/action/ingredients";
 
 
 export const App: React.FC = () => {
@@ -34,6 +35,14 @@ export const App: React.FC = () => {
     const returnFromModal = () => {
         history.goBack();
     };
+    const dispatch = useAppDispatch();
+
+    React.useEffect(
+        () => {
+            dispatch(getIngredients());
+        },
+        [dispatch]
+    );
 
     return (
         <div>

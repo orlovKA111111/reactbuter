@@ -21,7 +21,7 @@ export const LoginPage: React.FC = () => {
       state => state.auth
   );
   const dispatch = useAppDispatch();
-  const [form, setValue] = React.useState({ email:'', password:'' });
+  const [form, setValue] = React.useState<any>({ email:'', password:'' });
   const onChange = (e:{target: HTMLInputElement}) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
