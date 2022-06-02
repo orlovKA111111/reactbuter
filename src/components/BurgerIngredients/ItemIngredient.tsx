@@ -17,6 +17,7 @@ import { useAppSelector } from "../../services/hooks";
 const ItemIngredient: React.FC<IIngredientItem> = ({ product }) => {
     const location = useLocation<any>();
     const { ingredients, bun } = useAppSelector(
+
         state => state.construct
     );
 

@@ -5,16 +5,14 @@ import IngredientsList from './IngredientsList'
 
 
 const BurgerIngredients: React.FC = () => {
-
     const [current, setCurrent] = React.useState<any>('bun');
 
     const ref = React.useRef<HTMLDivElement>(null);
     const bunRef = React.useRef<HTMLDivElement>(null);
     const sauceRef = React.useRef<HTMLDivElement>(null);
     const mainRef = React.useRef<HTMLDivElement>(null);
-
-
-    const onScroll = () => {   if (ref && ref.current) {
+    
+    const onScroll = () => { if (ref && ref.current) {
         const distance = ref.current.getBoundingClientRect().y;
         if (bunRef && bunRef.current) {
             const bunDistance = Math.abs(distance - bunRef.current.getBoundingClientRect().y);

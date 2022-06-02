@@ -95,7 +95,12 @@ export const ProfilePage: FC = () => {
                 <div className="mt-6"><Input type={'text'} placeholder={'Имя'} onChange={onChange} icon={'CurrencyIcon'} value={form.name} name="name" error={false} ref={inputRef} onIconClick={onIconClick} errorText={'Ошибка'} size={'default'} /></div>
                 <div className="mt-6"><EmailInput onChange={onChange} value={form.email} name="email" /></div>
                 <div className="mt-6"><PasswordInput onChange={onChange} value={form.password} name={'password'} /></div>
-                <div className={styles.buttons + ' mt-6'}><button className={styles.cancel + ' text text_type_main-default pl-2 pr-2 mr-5'} onClick={cancel}>Отмена</button><Button type="primary" size="medium">Сохранить</Button></div>
+                <div className={styles.buttons + ' mt-6'}>
+                  <button className={styles.cancel + ' text text_type_main-default pl-2 pr-2 mr-5'} onClick={cancel}>
+                    Отмена
+                  </button>
+                  <Button type="primary" size="medium" name='Сохранить' />
+                </div>
               </form>
             </section>
           </div>

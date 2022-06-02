@@ -18,6 +18,7 @@ export const HomePage: React.FC = () =>  {
     state => state.order
   );
   const dispatch = useAppDispatch();
+
   const handleCloseModal = () => {
     window.history.replaceState(null, '', '/');
     dispatch({type:RESET_ORDER_OBJECT});
