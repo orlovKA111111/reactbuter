@@ -22,6 +22,7 @@ export const IngredientConstructor: React.FC <IConstructorIngredient> = ({id, nu
     );
 
     const dispatch = useAppDispatch();
+
     const [, drag] = useDrag({
         type: 'itemsSub',
         item: {id, num, ref},

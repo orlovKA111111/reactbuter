@@ -1,4 +1,5 @@
 import React  from 'react';
+
 import {
     Redirect,
     Route,
@@ -11,6 +12,7 @@ import { useAppDispatch } from "../services/hooks";
 
 export const ProtectedRoute: React.FC<RouteProps> = ({ children, ...rest }:any) => {
     const dispatch = useAppDispatch();
+
     const location = useLocation<any>();
     const refreshToken = localStorage.refreshToken;
 
@@ -20,7 +22,6 @@ export const ProtectedRoute: React.FC<RouteProps> = ({ children, ...rest }:any) 
         }
     }, [dispatch, refreshToken]);
 
-    // @ts-ignore
     return (
         <Route
             {...rest}

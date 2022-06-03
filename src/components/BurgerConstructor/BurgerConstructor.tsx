@@ -34,7 +34,6 @@ const BurgerConstructor: React.FC = () =>  {
     );
     const dispatch = useAppDispatch();
     const history = useHistory<any>();
-
     const moveItem = (item:{id:string, uuid:string}) => {
         if (items) {
             const ingredient = items.find((product) => product._id === item.id);
@@ -114,8 +113,6 @@ const BurgerConstructor: React.FC = () =>  {
         return total;
     }, [ingredients, bun, items]);
 
-
-    // @ts-ignore
     return (
         <section ref={dropTarget} className={style.wrap + ' mt-15'}>
             <div className={ style.height+' mt-4'}>

@@ -6,7 +6,6 @@ import Ingredient from '../components/PageIngredient/';
 
 
 export const IngredientPage: React.FC = () =>  {
-
   const dispatch = useAppDispatch();
   const { id } = useParams<{id:string}>();
 
