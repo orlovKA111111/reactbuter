@@ -7,6 +7,7 @@
 .list {
     max-height:520px;
     overflow:auto;
+    padding: 10px;
 }
 .items {
     display:flex;
@@ -17,9 +18,10 @@
 }
 .item {
     position:relative;
-    width:50%;
     text-align:center;
     cursor:pointer;
+    text-decoration: none;
+    color: white;
 }
 .price {
     display:flex;
@@ -31,3 +33,4 @@
     text-align:center;
     min-height:48px;
 }
+

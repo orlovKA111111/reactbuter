@@ -1,26 +1,15 @@
 main {
-    width:1240px;
-    margin:0 auto;
-    text-align:left;
+	width:1240px;
+	margin:0 auto;
+	text-align:left;
 }
 .conteiner {
-    display:flex;
-    flex-direction:row;
-    justify-content:flex-start;  
+	display:flex;
+	flex-direction:row;
+	justify-content:flex-start;
 }
 .menu {
 	width:320px;
-}
-.menu ul {
-	padding:0;
-}
-.menu li {
-	list-style-type: none;
-	line-height:64px;
-}
-.link {
-	text-decoration:none;
-	cursor:pointer;
 }
 .text {
 	opacity:0.4;
@@ -35,5 +24,8 @@ main {
 	cursor:pointer;
 }
 .cancel:hover {
-    text-shadow:0 0 4px rgb(51,51,255);
+	text-shadow:0 0 4px rgb(51,51,255);
+}
+.orders {
+	width:840px;
 }

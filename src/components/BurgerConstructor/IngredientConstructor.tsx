@@ -40,7 +40,7 @@ export const IngredientConstructor: React.FC <IConstructorIngredient> = ({id, nu
         return (
             <div className={style.item} ref={ref} key={k}>
             <ConstructorElement
-                text={name + ((position === 'top') ? ' (верх)' : ' (низ)')}
+                text={name}
                 isLocked={true}
                 price={price}
                 thumbnail={image}
