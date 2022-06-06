@@ -12,9 +12,8 @@ type TFeedItem = {
 
 const FeedItem: React.FC<TFeedItem> = ({order}) => {
   const location = useLocation<any>();
-  const pathName = (location.pathname === '/Feed') ? `/feed/${order.number}` : `/profile/orders/${order.number}`;
+  const pathName = (location.pathname === '/feed') ? `/feed/${order.number}` : `/profile/orders/${order.number}`;
   const date = getOrderDate(order);
-
   const { items } = useAppSelector(
     state => state.ingredients
   );

@@ -95,7 +95,7 @@ export const App: React.FC = () => {
             {background && (
                 <Route path='/feed/:id' exact={true}>
                     <Modal onClose={returnFromModal}>
-                        <FeedDetails isProfile={true} />
+                        <FeedDetails isProfile={false} />
                     </Modal>
                 </Route>
             )}

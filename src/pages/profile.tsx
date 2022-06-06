@@ -82,7 +82,7 @@ export const ProfilePage: FC = () => {
                   <button className={styles.cancel + ' text text_type_main-default pl-2 pr-2 mr-5'} onClick={cancel}>
                     Отмена
                   </button>
-                  <Button type="primary" size="medium" name='Сохранить' />
+                  <Button type="primary" size="medium" name='Сохранить'>Сохранить</Button>
                 </div>
               </form>
             </section>

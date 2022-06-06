@@ -6,7 +6,7 @@ import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import { IModal } from './types';
 
-const Modal: React.FC<IModal> = ({ onClose, children }) =>  {
+const Modal: React.FC<IModal> = ({ onClose, children }:any) =>  {
     const modalRoot = document.getElementById("modals");
 
     const onPressEsc = React.useCallback((e:any) => {

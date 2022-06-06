@@ -16,6 +16,9 @@
     flex-wrap:wrap;
     width:100%;
 }
+a.item{
+    width: 50%;
+}
 .item {
     position:relative;
     text-align:center;

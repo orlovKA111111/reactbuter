@@ -34,7 +34,7 @@ export const IngredientConstructor: React.FC <IConstructorIngredient> = ({id, nu
     const product = (items != null) && items.find(item => item._id === id);
     const price:number = (product && product.price) ? product.price : 0;
     const image = (product && product.image) ? product.image : '';
-    const name:string = (product && product.name) ? product.name + ((position === 'top') ? ' (верх)' : ' (низ)') : '';
+    const name:string = (product && product.name) ? product.name + ((position === 'top') ? ' (верх)' : (position === 'bottom') ?' (низ)': '') : '';
 
     if (position) {
 
