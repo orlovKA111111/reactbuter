@@ -28,4 +28,6 @@ main {
 }
 .orders {
 	width:840px;
+	overflow-y: scroll;
+	height: 620px;
 }
