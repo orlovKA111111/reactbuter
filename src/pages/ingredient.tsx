@@ -1,15 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-
-import Ingredient from '../components/PageIngredient/';
-
 import { getIngredients } from '../services/action/ingredients';
+import { useAppDispatch } from "../services/hooks";
+import Ingredient from '../components/PageIngredient/';
 
 
 export const IngredientPage: React.FC = () =>  {
-
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
   const { id } = useParams<{id:string}>();
 
   React.useEffect(

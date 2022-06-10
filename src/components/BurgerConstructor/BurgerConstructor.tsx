@@ -6,11 +6,6 @@ import {
 import style from './BurgerConstructor.module.css'
 import { useHistory } from 'react-router-dom';
 
-import {
-    useSelector,
-    useDispatch
-} from "react-redux";
-
 import { useDrop } from 'react-dnd';
 
 import {
@@ -24,19 +19,21 @@ import IngredientConstructor from "./IngredientConstructor";
 import { getOrderNumber } from "../../services/action/order";
 import { v4 as uuidKey } from 'uuid';
 
-import { IIngredients, IStateI, IStateC } from './types';
+import {
+    useAppSelector,
+    useAppDispatch
+} from "../../services/hooks";
 
 const BurgerConstructor: React.FC = () =>  {
 
-    const { items } = useSelector<IStateI, { items: Array<IIngredients> | null }>(
+    const { items } = useAppSelector(
         state => state.ingredients
     );
-    const { ingredients, bun } = useSelector< IStateC, { ingredients:Array<{id:string, uuid:string}>|null, bun:string|null } >(
+    const { ingredients, bun } = useAppSelector(
         state => state.construct
     );
-    const dispatch = useDispatch<any>();
-    const history = useHistory();
-
+    const dispatch = useAppDispatch();
+    const history = useHistory<any>();
     const moveItem = (item:{id:string, uuid:string}) => {
         if (items) {
             const ingredient = items.find((product) => product._id === item.id);
@@ -143,7 +140,7 @@ const BurgerConstructor: React.FC = () =>  {
                       <span className="text text_type_digits-medium mr-4">{sumPrice}</span>
                         <CurrencyIcon type="primary" />
                     </span>
-                    <Button type="primary" size="medium" onClick={openOrderPopup} >
+                    <Button type="primary" size="medium" onClick={openOrderPopup}>
                         Оформить заказ
                     </Button>
             </div>

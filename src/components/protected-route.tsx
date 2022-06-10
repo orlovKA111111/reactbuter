@@ -1,18 +1,18 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React  from 'react';
+
 import {
     Redirect,
     Route,
     useLocation,
     RouteProps
-} from 'react-router-dom';
-
+} from 'react-router';
 import { getAccessToken } from '../services/action/auth';
-
+import { useAppDispatch } from "../services/hooks";
 
 
 export const ProtectedRoute: React.FC<RouteProps> = ({ children, ...rest }:any) => {
-    const dispatch = useDispatch<any>();
+    const dispatch = useAppDispatch();
+
     const location = useLocation<any>();
     const refreshToken = localStorage.refreshToken;
 
@@ -21,6 +21,7 @@ export const ProtectedRoute: React.FC<RouteProps> = ({ children, ...rest }:any) 
             dispatch(getAccessToken());
         }
     }, [dispatch, refreshToken]);
+
     return (
         <Route
             {...rest}

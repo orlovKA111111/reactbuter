@@ -4,22 +4,25 @@ import {
     ConstructorElement,
     DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { DELETE_ITEM_CONSTRUCTOR } from '../../services/action/constructor';
-import {
-    useDispatch,
-    useSelector } from 'react-redux';
+
 import { useDrag } from 'react-dnd';
-import { IIngredients, IStateI, IConstructorIngredient } from './types';
+import { IConstructorIngredient } from './types';
+import {
+    useAppDispatch,
+    useAppSelector
+} from "../../services/hooks";
 
 
 
 
 export const IngredientConstructor: React.FC <IConstructorIngredient> = ({id, num, position, k}) =>  {
     const ref = React.useRef<HTMLDivElement>(null);
-    const { items } = useSelector<IStateI, { items: Array<IIngredients> | null }>(
+    const { items } = useAppSelector(
         state => state.ingredients
     );
 
-    const dispatch = useDispatch<any>();
+    const dispatch = useAppDispatch();
+
     const [, drag] = useDrag({
         type: 'itemsSub',
         item: {id, num, ref},
@@ -31,14 +34,14 @@ export const IngredientConstructor: React.FC <IConstructorIngredient> = ({id, nu
     const product = (items != null) && items.find(item => item._id === id);
     const price:number = (product && product.price) ? product.price : 0;
     const image = (product && product.image) ? product.image : '';
-    const name:string = (product && product.name) ? product.name + ((position === 'top') ? ' (верх)' : ' (низ)') : '';
+    const name:string = (product && product.name) ? product.name + ((position === 'top') ? ' (верх)' : (position === 'bottom') ?' (низ)': '') : '';
 
     if (position) {
 
         return (
             <div className={style.item} ref={ref} key={k}>
             <ConstructorElement
-                text={name + ((position === 'top') ? ' (верх)' : ' (низ)')}
+                text={name}
                 isLocked={true}
                 price={price}
                 thumbnail={image}

@@ -1,39 +1,37 @@
-import React, { useState, useRef, useEffect, FC, SyntheticEvent } from 'react';
-import { useHistory, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAuth, updateAuth, logout } from '../services/action/auth';
-import styles from './profile.module.css';
-import { Input, EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  FC,
+  SyntheticEvent
+} from 'react';
 
-interface IState {
-  auth:{
-    name:string,
-    email:string,
-    loginRequest:boolean,
-    loginFailed:boolean,
-    logoutRequest:boolean,
-    logoutFailed:boolean,
-    forgotRequest:boolean,
-    forgotFailed:boolean,
-    resetRequest:boolean,
-    resetFailed:boolean,
-    authRequest:boolean,
-    authFailed:boolean,
-    tokenRequest:boolean,
-    tokenFailed:boolean
-  }
-}
+import {
+  getAuth,
+  updateAuth,
+  } from '../services/action/auth';
+import styles from './profile.module.css';
+import {
+  Input,
+  EmailInput,
+  PasswordInput,
+  Button
+} from '@ya.praktikum/react-developer-burger-ui-components';
+import {
+  useAppDispatch,
+  useAppSelector
+} from "../services/hooks";
+import ProfileMenu from "../components/ProfileMenu/ProfileMenu";
 
 export const ProfilePage: FC = () => {
 
-  const history = useHistory();
   const inputRef = useRef<HTMLInputElement>(null);
-  const dispatch = useDispatch<any>();
-  const { name, email } = useSelector<IState,{name:string, email:string}>(
+  const dispatch = useAppDispatch();
+  const { name, email } = useAppSelector(
       state => state.auth
   );
 
-  const [form, setValue] = useState<any>({ name:name, email:email, password: '' });
+  const [form, setValue] = useState({ name:name, email:email, password: '' });
   const onChange = (e:{target: HTMLInputElement}) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
@@ -52,16 +50,6 @@ export const ProfilePage: FC = () => {
     e.preventDefault();
     dispatch(updateAuth(form));
   }
-
-  const redirect = () => {
-    history.push('/login')
-  };
-
-  const llogout = (e:SyntheticEvent) => {
-    e.preventDefault();
-    dispatch(logout(redirect));
-  };
-
   useEffect(
       () => {
         dispatch(getAuth());
@@ -76,16 +64,13 @@ export const ProfilePage: FC = () => {
       [name, email]
   );
 
+
   return (
       <div>
         <main>
           <div className={styles.conteiner + ' pt-20'}>
             <section className={styles.menu + ' mr-15'}>
-              <ul>
-                <li className={styles.menu_item + ' text text_type_main-medium'}>Профиль</li>
-                <li className={styles.menu_item + ' text text_type_main-medium'}><Link to="/orders" className={styles.link + ' text_color_inactive'}>История заказов</Link></li>
-                <li className={styles.menu_item + ' text text_type_main-medium'} onClick={llogout}><span className={styles.link + ' text_color_inactive'}>Выйти</span></li>
-              </ul>
+              <ProfileMenu />
               <p className={styles.text + ' text text_type_main-default text_color_inactive mt-20'}>В этом разделе вы можете изменить свои персональные данные</p>
             </section>
             <section className={styles.about}>
@@ -97,7 +82,7 @@ export const ProfilePage: FC = () => {
                   <button className={styles.cancel + ' text text_type_main-default pl-2 pr-2 mr-5'} onClick={cancel}>
                     Отмена
                   </button>
-                  <Button type="primary" size="medium" name='Сохранить' />
+                  <Button type="primary" size="medium" name='Сохранить'>Сохранить</Button>
                 </div>
               </form>
             </section>
