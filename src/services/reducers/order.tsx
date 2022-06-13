@@ -27,7 +27,8 @@ export const orderReducer = (state = initialState, action : TOrdersActions) : TI
     case GET_ORDER_REQUEST: {
       return {
         ...state,
-        orderRequest:true
+        orderRequest:true,
+        orderObject:{number:0, name:'Ожидайте'}
       };
     }
     case GET_ORDER_SUCCESS: {
