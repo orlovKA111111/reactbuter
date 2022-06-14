@@ -17,7 +17,7 @@ function OrderDetails(){
                          <CheckMarkIcon type="primary" />
                      </div>
                      <p className="pl-2 pr-2 pb-1 pt-10 text text_type_main-default">Ваш заказа начали готовить</p>
-                     <p className="pl-2 pr-2 pb-1 pt-1 text text_type_main-default text_color_inactive">Дождитесь готовности на орбитальной станцыии</p>
+                     <p className="pl-2 pr-2 pb-1 pt-1 text text_type_main-default text_color_inactive">Дождитесь готовности на орбитальной станцыи</p>
                 </div>
             )}
         </>
