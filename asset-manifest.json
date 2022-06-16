@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/reactbuter/public/index.html/static/css/main.47df12b5.css",
-    "main.js": "/reactbuter/public/index.html/static/js/main.b1b154ac.js",
+    "main.js": "/reactbuter/public/index.html/static/js/main.84b0c194.js",
     "static/media/JetBrainsMono-Bold.woff": "/reactbuter/public/index.html/static/media/JetBrainsMono-Bold.3914674f1cb2335acf26.woff",
     "static/media/JetBrainsMono-Regular.woff": "/reactbuter/public/index.html/static/media/JetBrainsMono-Regular.f52bee61d00ce995b89f.woff",
     "static/media/JetBrainsMono-Bold.woff2": "/reactbuter/public/index.html/static/media/JetBrainsMono-Bold.c232d532ea5a5189a278.woff2",
@@ -10,10 +10,10 @@
     "static/media/iceland.woff2": "/reactbuter/public/index.html/static/media/iceland.4ae67a017a5ff82bbbb7.woff2",
     "index.html": "/reactbuter/public/index.html/index.html",
     "main.47df12b5.css.map": "/reactbuter/public/index.html/static/css/main.47df12b5.css.map",
-    "main.b1b154ac.js.map": "/reactbuter/public/index.html/static/js/main.b1b154ac.js.map"
+    "main.84b0c194.js.map": "/reactbuter/public/index.html/static/js/main.84b0c194.js.map"
   },
   "entrypoints": [
     "static/css/main.47df12b5.css",
-    "static/js/main.b1b154ac.js"
+    "static/js/main.84b0c194.js"
   ]
 }
