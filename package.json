@@ -2,10 +2,10 @@
   "name": "react-burger",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://orlovka111111.github.io/reactbuter/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.2",
     "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.0",
     "@types/node": "^16.11.21",
@@ -31,7 +31,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "./node_modules/.bin/cypress open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -52,7 +55,17 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react": "^13.3.0",
     "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4"
+    "@types/react-dom": "^18.0.4",
+    "cypress": "^7.4.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "eslint-plugin-cypress": "^2.12.1",
+    "fetch-mock": "^9.11.0",
+    "gh-pages": "^3.1.0",
+    "jest": "^28.1.1",
+    "react-test-renderer": "^18.1.0",
+    "redux-mock-store": "^1.5.4"
   }
 }
