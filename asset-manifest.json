@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/reactbuter/static/css/main.5366e611.css",
-    "main.js": "/reactbuter/static/js/main.fc512da0.js",
-    "static/media/JetBrainsMono-Bold.woff": "/reactbuter/static/media/JetBrainsMono-Bold.3914674f1cb2335acf26.woff",
-    "static/media/JetBrainsMono-Regular.woff": "/reactbuter/static/media/JetBrainsMono-Regular.f52bee61d00ce995b89f.woff",
-    "static/media/JetBrainsMono-Bold.woff2": "/reactbuter/static/media/JetBrainsMono-Bold.c232d532ea5a5189a278.woff2",
-    "static/media/JetBrainsMono-Regular.woff2": "/reactbuter/static/media/JetBrainsMono-Regular.b60380891bcf2eb241ca.woff2",
-    "static/media/iceland.woff": "/reactbuter/static/media/iceland.77ad7fc2baffd9305538.woff",
-    "static/media/iceland.woff2": "/reactbuter/static/media/iceland.4ae67a017a5ff82bbbb7.woff2",
-    "index.html": "/reactbuter/index.html",
-    "main.5366e611.css.map": "/reactbuter/static/css/main.5366e611.css.map",
-    "main.fc512da0.js.map": "/reactbuter/static/js/main.fc512da0.js.map"
+    "main.css": "/reactbuter/public/index.html/static/css/main.47df12b5.css",
+    "main.js": "/reactbuter/public/index.html/static/js/main.b1b154ac.js",
+    "static/media/JetBrainsMono-Bold.woff": "/reactbuter/public/index.html/static/media/JetBrainsMono-Bold.3914674f1cb2335acf26.woff",
+    "static/media/JetBrainsMono-Regular.woff": "/reactbuter/public/index.html/static/media/JetBrainsMono-Regular.f52bee61d00ce995b89f.woff",
+    "static/media/JetBrainsMono-Bold.woff2": "/reactbuter/public/index.html/static/media/JetBrainsMono-Bold.c232d532ea5a5189a278.woff2",
+    "static/media/JetBrainsMono-Regular.woff2": "/reactbuter/public/index.html/static/media/JetBrainsMono-Regular.b60380891bcf2eb241ca.woff2",
+    "static/media/iceland.woff": "/reactbuter/public/index.html/static/media/iceland.77ad7fc2baffd9305538.woff",
+    "static/media/iceland.woff2": "/reactbuter/public/index.html/static/media/iceland.4ae67a017a5ff82bbbb7.woff2",
+    "index.html": "/reactbuter/public/index.html/index.html",
+    "main.47df12b5.css.map": "/reactbuter/public/index.html/static/css/main.47df12b5.css.map",
+    "main.b1b154ac.js.map": "/reactbuter/public/index.html/static/js/main.b1b154ac.js.map"
   },
   "entrypoints": [
-    "static/css/main.5366e611.css",
-    "static/js/main.fc512da0.js"
+    "static/css/main.47df12b5.css",
+    "static/js/main.b1b154ac.js"
   ]
 }
