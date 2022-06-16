@@ -9,7 +9,7 @@ import { store } from './store';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router basename='/reactbuter'>
+      <Router basename='/reactbuter/'>
         <App />
       </Router>
     </Provider>
